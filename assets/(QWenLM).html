@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qwen Observatory</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f9f9f9; padding: 20px; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        h2 { color: #615ced; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .status { padding: 10px; border-radius: 5px; margin-bottom: 15px; font-weight: bold; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        ul { list-style-type: none; padding: 0; }
+        li { background: #f1f3f5; margin: 8px 0; padding: 12px; border-radius: 6px; border-left: 4px solid #615ced; }
+        li a { text-decoration: none; color: #333; font-weight: 500; display: block; }
+        li a:hover { color: #615ced; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🔗 Latest Qwen Updates</h2>
+        <div id="status" class="status">Fetching information...</div>
+        <ul id="links-list"></ul>
+    </div>
+
+    <script>
+        // Note: To bypass CORS in the browser environment, a public proxy service is used.
+        // In production, this request should be handled by a backend server.
+        const targetUrl = "https://qwenlm.github.io/";
+        const proxyUrl = "https://api.allorigins.win/get?url=" + encodeURIComponent(targetUrl);
+
+        fetch(proxyUrl)
+            .then(response => response.json())
+            .then(data => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(data.contents, "text/html");
+                const links = doc.querySelectorAll('a');
+                const listContainer = document.getElementById('links-list');
+                const statusDiv = document.getElementById('status');
+                
+                let count = 0;
+                links.forEach(link => {
+                    const href = link.getAttribute('href');
+                    const text = link.textContent.trim();
+                    
+                    if (text && href && (href.includes('github') || href.includes('blog') || href.includes('agent'))) {
+                        const fullUrl = href.startsWith('http') ? href : `https://qwenlm.github.io${href}`;
+                        const li = document.createElement('li');
+                        li.innerHTML = `<a href="${fullUrl}" target="_blank">${text} ➚</a>`;
+                        listContainer.appendChild(li);
+                        count++;
+                    }
+                });
+
+                statusDiv.className = "status success";
+                statusDiv.textContent = `✅ Successfully fetched. (${count} relevant links found)`;
+            })
+            .catch(error => {
+                document.getElementById('status').className = "status error";
+                document.getElementById('status').textContent = "❌ Error fetching information: " + error.message;
+            });
+    </script>
+</body>
+</html>به 

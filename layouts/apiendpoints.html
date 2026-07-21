@@ -1,0 +1,24 @@
+# ------------------------------------------------------------------------------
+# Scenario 3: AND Condition
+# Description: Fetch new users WHERE country is 'Japan' AND channel is 'Organic Search'.
+# ------------------------------------------------------------------------------
+get_ga4_report_and_condition:
+  action>: GetGA4Report
+  provider: ga_*****
+  propertyId: 12345
+  startDate: '2023-03-01'
+  endDate: '2023-03-01'
+  metrics: newUsers
+  dimensions: 'country, sessionDefaultChannelGroup'
+  dimensionFilter:
+    andGroup:
+      expressions:
+        - filter:
+            fieldName: sessionDefaultChannelGroup
+            stringFilter:
+              value: 'Organic Search'
+        - filter:
+            fieldName: country
+            stringFilter:
+              value: Japan
+  pageSize: 1000

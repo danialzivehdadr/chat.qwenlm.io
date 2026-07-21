@@ -1,0 +1,21 @@
+# ------------------------------------------------------------------------------
+# Scenario 2: NOT Condition (Exclusion)
+# Description: Fetch daily new users, EXCLUDING specific countries (Japan, China).
+# ------------------------------------------------------------------------------
+get_ga4_report_not_condition:
+  action>: GetGA4Report
+  provider: ga_*****
+  propertyId: 12345
+  startDate: '2023-03-01'
+  endDate: '2023-03-03'
+  metrics: newUsers
+  dimensions: 'date, country'
+  dimensionFilter:
+    notExpression:
+      filter:
+        fieldName: country
+        inListFilter:
+          values:
+            - Japan
+            - China
+  pageSize: 1000

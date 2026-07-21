@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💾 Internal Memory System - LocalStorage Manager</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            color: #667eea;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            min-width: 150px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+        
+        .form-section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            height: fit-content;
+        }
+        
+        .form-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 22px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Segoe UI', sans-serif;
+            transition: all 0.3s;
+        }
+        
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+        
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+        
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+            padding: 8px 15px;
+            font-size: 13px;
+        }
+        
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+        
+        .data-section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .data-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 22px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .search-box {
+            margin-bottom: 20px;
+        }
+        
+        .data-list {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .data-item {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            transition: all 0.3s;
+        }
+        
+        .data-item:hover {
+            border-color: #667eea;
+            transform: translateX(-5px);
+        }
+        
+        .data-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .data-key {
+            font-size: 16px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .data-actions {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .data-value {
+            font-size: 13px;
+            color: #555;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            word-break: break-word;
+            max-height: 100px;
+            overflow-y: auto;
+        }
+        
+        .data-meta {
+            font-size: 11px;
+            color: #95a5a6;
+            margin-top: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #95a5a6;
+        }
+        
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .category-tag {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            margin-left: 5px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        .modal-header {
+            font-size: 20px;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: flex-end;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header & Stats -->
+        <div class="header">
+            <h1>💾 Internal Memory System</h1>
+            <p>Manage and store data in browser storage</p>
+            <div class="stats">
+                <div class="stat-box">
+                    <span class="stat-number" id="totalItems">0</span>
+                    <span class="stat-label">Total Records</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number" id="totalSize">0</span>
+                    <span class="stat-label">Size (KB)</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number" id="categories">0</span>
+                    <span class="stat-label">Categories</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <!-- Input Form -->
+            <div class="form-section">
+                <h2>➕ Add New Record</h2>
+                <form id="dataForm">
+                    <div class="form-group">
+                        <label class="form-label">Key *</label>
+                        <input type="text" class="form-input" id="dataKey" placeholder="Example: user_001" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <select class="form-select" id="dataCategory">
+                            <option value="general">General</option>
+                            <option value="user">User</option>
+                            <option value="config">Configuration</option>
+                            <option value="log">Log</option>
+                            <option value="cache">Cache</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Value *</label>
+                        <textarea class="form-textarea" id="dataValue" placeholder="Enter value..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">💾 Save to Memory</button>
+                    <button type="button" class="btn btn-secondary" onclick="clearForm()" style="margin-top: 10px; width: 100%;">🗑️ Clear Form</button>
+                </form>
+                
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 2px solid #e9ecef;">
+                    <button class="btn btn-danger" onclick="confirmClearAll()" style="width: 100%;">⚠️ Clear All Memory</button>
+                </div>
+            </div>
+            
+            <!-- Data List -->
+            <div class="data-section">
+                <h2>📋 Stored Records</h2>
+                <div class="search-box">
+                    <input type="text" class="form-input" id="searchInput" placeholder="🔍 Search in key or value..." oninput="filterData()">
+                </div>
+                <div class="data-list" id="dataList">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📭</div>
+                        <p>No records stored yet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content">
+            <div class="modal-header">⚠️ Confirm Action</div>
+            <p id="modalMessage">Are you sure?</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-danger" id="confirmBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // LocalStorage Management
+        // ============================================
+        
+        const STORAGE_PREFIX = 'guardian_';
+        let editingKey = null;
+        
+        // Save data
+        function saveData(key, value, category = 'general') {
+            const data = {
+                value: value,
+                category: category,
+                timestamp: new Date().toISOString(),
+                size: new Blob([value]).size
+            };
+            localStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(data));
+            updateStats();
+            loadDataList();
+        }
+        
+        // Get data
+        function getData(key) {
+            const item = localStorage.getItem(STORAGE_PREFIX + key);
+            return item ? JSON.parse(item) : null;
+        }
+        
+        // Delete data
+        function deleteData(key) {
+            localStorage.removeItem(STORAGE_PREFIX + key);
+            updateStats();
+            loadDataList();
+        }
+        
+        // Clear all
+        function clearAll() {
+            const keys = Object.keys(localStorage).filter(k => k.startsWith(STORAGE_PREFIX));
+            keys.forEach(key => localStorage.removeItem(key));
+            updateStats();
+            loadDataList();
+        }
+        
+        // Get all data
+        function getAllData() {
+            const data = [];
+            const keys = Object.keys(localStorage).filter(k => k.startsWith(STORAGE_PREFIX));
+            
+            keys.forEach(key => {
+                const item = JSON.parse(localStorage.getItem(key));
+                data.push({
+                    key: key.replace(STORAGE_PREFIX, ''),
+                    ...item
+                });
+            });
+            
+            return data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        }
+        
+        // Update statistics
+        function updateStats() {
+            const data = getAllData();
+            const totalSize = data.reduce((sum, item) => sum + (item.size || 0), 0);
+            const categories = new Set(data.map(item => item.category));
+            
+            document.getElementById('totalItems').textContent = data.length;
+            document.getElementById('totalSize').textContent = (totalSize / 1024).toFixed(2);
+            document.getElementById('categories').textContent = categories.size;
+        }
+        
+        // Display data list
+        function loadDataList(filter = '') {
+            const dataList = document.getElementById('dataList');
+            const data = getAllData();
+            
+            const filtered = filter ? data.filter(item => 
+                item.key.toLowerCase().includes(filter.toLowerCase()) ||
+                item.value.toLowerCase().includes(filter.toLowerCase())
+            ) : data;
+            
+            if (filtered.length === 0) {
+                dataList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📭</div>
+                        <p>${filter ? 'No results found' : 'No records stored yet'}</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            dataList.innerHTML = filtered.map(item => `
+                <div class="data-item">
+                    <div class="data-header">
+                        <div>
+                            <span class="data-key">${item.key}</span>
+                            <span class="category-tag">${item.category}</span>
+                        </div>
+                        <div class="data-actions">
+                            <button class="btn btn-secondary" onclick="editItem('${item.key}')">✏️ Edit</button>
+                            <button class="btn btn-danger" onclick="confirmDelete('${item.key}')">🗑️ Delete</button>
+                        </div>
+                    </div>
+                    <div class="data-value">${escapeHtml(item.value)}</div>
+                    <div class="data-meta">
+                        <span>📅 ${new Date(item.timestamp).toLocaleString('en-US')}</span>
+                        <span>💾 ${(item.size / 1024).toFixed(2)} KB</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Filter data
+        function filterData() {
+            const search = document.getElementById('searchInput').value;
+            loadDataList(search);
+        }
+        
+        // Edit item
+        function editItem(key) {
+            const data = getData(key);
+            if (data) {
+                document.getElementById('dataKey').value = key;
+                document.getElementById('dataValue').value = data.value;
+                document.getElementById('dataCategory').value = data.category;
+                editingKey = key;
+                document.getElementById('dataKey').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // Clear form
+        function clearForm() {
+            document.getElementById('dataForm').reset();
+            editingKey = null;
+        }
+        
+        // Confirm delete
+        function confirmDelete(key) {
+            showModal(`Are you sure you want to delete "${key}"?`, () => {
+                deleteData(key);
+                closeModal();
+            });
+        }
+        
+        // Confirm clear all
+        function confirmClearAll() {
+            showModal('Are you sure you want to clear all memory? This action cannot be undone!', () => {
+                clearAll();
+                closeModal();
+            });
+        }
+        
+        // Show modal
+        function showModal(message, onConfirm) {
+            document.getElementById('modalMessage').textContent = message;
+            document.getElementById('confirmModal').style.display = 'flex';
+            document.getElementById('confirmBtn').onclick = onConfirm;
+        }
+        
+        // Close modal
+        function closeModal() {
+            document.getElementById('confirmModal').style.display = 'none';
+        }
+        
+        // Escape HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // ============================================
+        // Event Listeners
+        // ============================================
+        
+        document.getElementById('dataForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const key = document.getElementById('dataKey').value.trim();
+            const value = document.getElementById('dataValue').value.trim();
+            const category = document.getElementById('dataCategory').value;
+            
+            if (!key || !value) {
+                alert('Please enter both key and value');
+                return;
+            }
+            
+            saveData(key, value, category);
+            clearForm();
+            alert('✅ Record saved successfully');
+        });
+        
+        // Close modal on outside click
+        window.onclick = function(event) {
+            const modal = document.getElementById('confirmModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+        
+        // ============================================
+        // Initial Load
+        // ============================================
+        
+        updateStats();
+        loadDataList();
+        
+        // Welcome message
+        console.log('💾 Internal Memory System is ready');
+        console.log('📊 Total records:', getAllData().length);
+    </script>
+</body>
+</html>

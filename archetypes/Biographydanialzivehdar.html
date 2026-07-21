@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biography Blog | Danial Zivehdar</title>
+    
+    <!-- Vazirmatn font for readability and typographic elegance -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    
+    <style>
+        /* --- Color variables and base settings --- */
+        :root {
+            --bg-color: #F9F9F9;
+            --text-main: #2C3E50;
+            --text-light: #596A7B;
+            --accent-color: #C5A059;
+            --card-bg: #FFFFFF;
+            --border-color: #EAEAEA;
+            --font-family: 'Vazirmatn', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header and navigation menu --- */
+        header {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--card-bg);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- About Me Section --- */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .about-section {
+            padding: 80px 0;
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: justify;
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
+        /* --- Timeline --- */
+        .timeline-section {
+            padding: 80px 0;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+            padding-right: 30px;
+            border-right: 2px solid var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-right: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -39px;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            border: 3px solid var(--bg-color);
+            box-shadow: 0 0 0 2px var(--accent-color);
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .timeline-desc {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* --- Blog Section --- */
+        .blog-section {
+            padding: 80px 0;
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .blog-card {
+            background: var(--bg-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+        }
+
+        .blog-card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: #e0e0e0;
+        }
+
+        .blog-card-content {
+            padding: 25px;
+        }
+
+        .blog-card-date {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .blog-card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .blog-card-excerpt {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .read-more {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-main);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 2px;
+        }
+
+        .read-more:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--text-main);
+            color: #FFFFFF;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .footer-links a {
+            color: #B0BEC5;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            font-size: 0.85rem;
+            color: #78909C;
+            margin-top: 20px;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">Danial <span>Zivehdar</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#timeline">Experience</a></li>
+                    <li><a href="#blog">Articles</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <img src="https://placehold.co/150x150/F9F9F9/2C3E50?text=Profile" alt="Profile Picture" class="hero-image">
+            <h1>Danial Zivehdar</h1>
+            <p>Researcher, writer, and enthusiast passionate about sharing lived experiences and professional insights on the journey of growth and excellence.</p>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>
+                    In this section, you can present a coherent narrative of your life journey, education, interests, and personal philosophy. Using a tone that is both intimate and professional helps establish a deeper connection with your audience. The goal of this section is to provide a clear picture of your identity, values, and achievements, encouraging visitors to explore other parts of your blog with an open mind.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="timeline-section" id="timeline">
+        <div class="container">
+            <h2 class="section-title">Professional & Academic Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2023 – Present</div>
+                    <h3 class="timeline-title">Managing and Developing Large-Scale Projects</h3>
+                    <p class="timeline-desc">Leading multidisciplinary teams and implementing innovative strategies in relevant professional domains.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2019 – 2023</div>
+                    <h3 class="timeline-title">Senior Specialist and Consultant</h3>
+                    <p class="timeline-desc">Providing expert consulting services, publishing specialized articles, and participating in national and international conferences.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2015 – 2019</div>
+                    <h3 class="timeline-title">Master's Degree Studies</h3>
+                    <p class="timeline-desc">Acquiring specialized knowledge in a related field and defending a thesis with a practical and innovative approach.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog-section" id="blog">
+        <div class="container">
+            <h2 class="section-title">Latest Articles</h2>
+            <div class="blog-grid">
+                <!-- Card 1 -->
+                <article class="blog-card">
+                    <img src="https://placehold.co/400x200/EAEAEA/596A7B?text=Blog+Image+1" alt="Blog Post Image" class="blog-card-img">
+                    <div class="blog-card-content">
+                        <div class="blog-card-date">July 5, 2026</div>
+                        <h3 class="blog-card-title">Reflections on the Importance of Personal Development in Today's Era</h3>
+                        <p class="blog-card-excerpt">In this article, we examine various dimensions of personal growth and its impact on professional and social success...</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="blog-card">
+                    <img src="https://placehold.co/400x200/EAEAEA/596A7B?text=Blog+Image+2" alt="Blog Post Image" class="blog-card-img">
+                    <div class="blog-card-content">
+                        <div class="blog-card-date">June 18, 2026</div>
+                        <h3 class="blog-card-title">An Overview of Challenges and Opportunities in the Modern Industry</h3>
+                        <p class="blog-card-excerpt">A comprehensive analysis of the current market landscape, potential obstacles, and practical solutions for navigating possible crises...</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="blog-card">
+                    <img src="https://placehold.co/400x200/EAEAEA/596A7B?text=Blog+Image+3" alt="Blog Post Image" class="blog-card-img">
+                    <div class="blog-card-content">
+                        <div class="blog-card-date">June 1, 2026</div>
+                        <h3 class="blog-card-title">Notes on the Importance of Continuous Learning and Reading</h3>
+                        <p class="blog-card-excerpt">Why daily reading and keeping your knowledge up-to-date is the key to survival and advancement in today's fast-paced world?</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-links">
+                <a href="mailto:danialzivehdar1992@gmail.com">Email</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Twitter</a>
+                <a href="#">GitHub</a>
+            </div>
+            <p class="copyright">© 2026 | All rights reserved to Danial Zivehdar.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

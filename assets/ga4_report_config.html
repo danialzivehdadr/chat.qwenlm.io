@@ -1,0 +1,24 @@
+# ------------------------------------------------------------------------------
+# Scenario 1: OR Condition
+# Description: Fetch daily event counts for 'page_view' OR 'first_visit'.
+# ------------------------------------------------------------------------------
+get_ga4_report_or_condition:
+  action>: GetGA4Report
+  provider: ga_****
+  propertyId: 12345
+  startDate: '2023-03-01'
+  endDate: '2023-03-03'
+  metrics: eventCount
+  dimensions: eventName
+  dimensionFilter:
+    orGroup:
+      expressions:
+        - filter:
+            fieldName: eventName
+            stringFilter:
+              value: page_view
+        - filter:
+            fieldName: eventName
+            stringFilter:
+              value: first_visit
+  pageSize: 1000
