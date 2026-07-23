@@ -1,0 +1,28 @@
+══════════════════════════════════════════════════
+   REPO OWNER ACCESS CONTROL - FRAMEWORK
+══════════════════════════════════════════════════
+
+[REGISTERED] Owner ID: OWN-X7K9M2P4Q1R8 | Name: Danial Zivehdar | Email: danialzivehdar1992@gmail.com | Active: YES
+
+──────────────────────────────────────────────────
+  OWNER CREDENTIALS (CONFIDENTIAL)
+──────────────────────────────────────────────────
+  Owner ID   : OWN-X7K9M2P4Q1R8
+  Access Key : aB3xK9mP2qR7wY4nT8vL1jH5
+  Created At : 2026-07-24T15:30:00
+──────────────────────────────────────────────────
+
+[GRANTED] Direct link generated for owner: Danial Zivehdar
+
+  DIRECT LINK (Owner Only):
+  https://your-repo.com/direct-access?owner_id=OWN-X7K9M2P4Q1R8&token=kX9mP2qR7wY4nT8vL1jH
+  Expires: 2026-07-25 15:30
+
+──────────────────────────────────────────────────
+  ACCESS VALIDATION TEST
+──────────────────────────────────────────────────
+[ACCESS GRANTED] Owner verified successfully.
+
+[ACCESS DENIED] Owner ID mismatch.
+
+══════════════════════════════════════════════════
