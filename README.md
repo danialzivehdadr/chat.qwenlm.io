@@ -7,6 +7,7 @@ Visit Qwen Research
   style="max-width: 200px; height: auto; border-radius: 8px; display: block; margin: 0 auto;"
 <a>
 
+App Dede  
 
 Visit Qwen Research 
 
