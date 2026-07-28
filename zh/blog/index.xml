@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Blog on Qwen</title>
+    <link>https://qwenlm.github.io/zh/blog/</link>
+    <description>Recent content in Blog on Qwen</description>
+    <image>
+      <url>https://qwenlm.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://qwenlm.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 23 Sep 2025 04:00:00 +0800</lastBuildDate><atom:link href="https://qwenlm.github.io/zh/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Qwen3Guard: 实时安全，逐词响应</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen3guard/</link>
+      <pubDate>Tue, 23 Sep 2025 04:00:00 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen3guard/</guid>
+      <description>Tech Report GitHub Hugging Face ModelScope DISCORD
+介绍 我们隆重推出 Qwen3Guard —— Qwen 家族中首款专为安全防护设计的护栏模型。该模型基于强大的 Qwen3 基础架构打造，并针对安全分类任务进行了专项微调，旨在为人工智能交互提供精准、可靠的安全保障。无论是用户输入的提示，还是模型生成的回复，Qwen3Guard 均可高效识别潜在风险，输出细粒度的风险等级与分类标签，助力实现更负责任的 AI 应用。
+在多项主流安全评测基准上，Qwen3Guard 表现卓越，稳居行业领先水平，全面覆盖英语、中文及多语言场景下的提示与回复安全检测任务。
+Qwen3Guard 提供两大专业版本，满足不同应用场景需求：
+Qwen3Guard-Gen（生成式版） 支持对完整用户输入与模型输出进行安全分类，适用于离线数据集的安全标注、过滤，亦可作为强化学习中基于安全性的奖励信号源，是构建高质量训练数据的理想工具。
+Qwen3Guard-Stream（流式检测版） 突破了传统的护栏模型架构，首次实现模型生成过程中的实时、流式安全检测，显著提升在线服务的安全响应效率与部署灵活性。
+为适配多样化的部署环境与算力资源，两大版本均提供 0.6B、4B、8B 三种参数规模，兼顾性能与效率，满足从边缘设备到云端服务的全场景需求。
+开源模型现已上线 Hugging Face 与 ModelScope 平台；您也可通过 阿里云 AI 安全护栏服务 一键接入企业级安全能力，享受由 Qwen3Guard 驱动的智能防护解决方案。 核心亮点 实时流式检测 Qwen3Guard-Stream 专为低延迟设计，可在模型逐词生成回复的过程中实时进行内容审核，确保安全性的同时不牺牲响应速度。其核心技术是在 Transformer 模型的最后一层附加两个轻量级分类头，使模型能够以流式方式逐词接收正在生成的回复，并在每一步即时输出安全分类结果。
+三级风险等级分类 除传统的“安全”与“不安全”标签外，我们新增了 “争议性” 标签，以支持根据不同应用场景灵活调整安全策略。具体而言，用户可根据实际需求，动态将“争议性”内容重新归类为“安全”或“不安全”，从而按需调节审核的严格程度。
+如下方评估所示，现有护栏模型受限于二元标签体系，难以同时适配不同数据集的标准。而 Qwen3Guard 凭借三级风险分类设计，可在“严格模式”与“宽松模式”间灵活切换，在多个数据集上均保持稳健的高性能表现。
+多语言支持 Qwen3Guard 支持 119 种语言及方言，适用于全球部署与跨语言应用场景，并在各类语言中均能提供稳定、高质量的安全检测能力。
+语系 语种&amp;amp;方言 印欧语系 英语、法语、葡萄牙语、德语、罗马尼亚语、瑞典语、丹麦语、保加利亚语、俄语、捷克语、希腊语、乌克兰语、西班牙语、荷兰语、斯洛伐克语、克罗地亚语、波兰语、立陶宛语、挪威语（博克马尔语）、挪威尼诺斯克语、波斯语、斯洛文尼亚语、古吉拉特语、拉脱维亚语、意大利语、奥克语、尼泊尔语、马拉地语、白俄罗斯语、塞尔维亚语、卢森堡语、威尼斯语、阿萨姆语、威尔士语、西里西亚语、阿斯图里亚语、恰蒂斯加尔语、阿瓦德语、迈蒂利语、博杰普尔语、信德语、爱尔兰语、法罗语、印地语、旁遮普语、孟加拉语、奥里雅语、塔吉克语、东意第绪语、伦巴第语、利古里亚语、西西里语、弗留利语、撒丁岛语、加利西亚语、加泰罗尼亚语、冰岛语、托斯克语、阿尔巴尼亚语、林堡语、罗马尼亚语、达里语、南非荷兰语、马其顿语僧伽罗语、乌尔都语、马加希语、波斯尼亚语、亚美尼亚语 汉藏语系 中文（简体中文、繁体中文、粤语）、缅甸语 亚非语系 阿拉伯语（标准语、内志语、黎凡特语、埃及语、摩洛哥语、美索不达米亚语、塔伊兹-阿德尼语、突尼斯语）、希伯来语、马耳他语 南岛语系 印度尼西亚语、马来语、他加禄语、宿务语、爪哇语、巽他语、米南加保语、巴厘岛语、班加语、邦阿西楠语、伊洛科语、瓦雷语（菲律宾） 德拉威语 泰米尔语、泰卢固语、卡纳达语、马拉雅拉姆语 突厥语系 土耳其语、北阿塞拜疆语、北乌兹别克语、哈萨克语、巴什基尔语、鞑靼语 壮侗语系 泰语、老挝语 乌拉尔语系 芬兰语、爱沙尼亚语、匈牙利语 南亚语系 越南语、高棉语 其他 日语、韩语、格鲁吉亚语、巴斯克语、海地语、帕皮阿门托语、卡布维尔迪亚努语、托克皮辛语、斯瓦希里语 更多应用场景 我们还展示了以下两种典型应用：</description>
+    </item>
+    
+    <item>
+      <title>Qwen-Image-Edit: 全能图像编辑，驱动内容创作提质增效</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen-image-edit/</link>
+      <pubDate>Tue, 19 Aug 2025 01:30:00 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen-image-edit/</guid>
+      <description>QWEN CHAT GITHUB HUGGING FACE MODELSCOPE DISCORD
+我们很高兴推出 Qwen-Image-Edit，Qwen-Image的图像编辑版本。Qwen-Image-Edit基于我们20B的 Qwen-Image 模型进一步训练，成功将Qwen-Image的独特的文本渲染能力延展至图像编辑领域，实现了对图片中文字的精准编辑。此外，Qwen-Image-Edit将输入图像同时输入到Qwen2.5-VL（实现视觉语义控制）和VAE Encoder（实现视觉外观控制），从而兼具语义与外观的双重编辑能力。如需体验最新模型，欢迎访问 Qwen Chat 并选择“图像编辑”功能。
+主要特性包括：
+语义与外观双重编辑：Qwen-Image-Edit 既支持 low-level 的视觉外观编辑（如元素的添加、删除、修改等，要求图片其他区域完全不变），也支持 high-level 的视觉语义编辑（如 IP 创作、物体旋转、风格迁移等，允许整体像素变化但保持语义一致）。
+精准文字编辑：Qwen-Image-Edit 支持中英文双语文字编辑，可在保留原有字体、字号、风格的前提下，直接对图片中的文字进行增、删、改等操作。
+强大的基准性能: 在多个公开基准测试中的评估表明，Qwen-Image-Edit 在图像编辑任务上具备SOTA性能，是一个强大的图像编辑基础模型。
+示例展示 Qwen-Image-Edit的一大亮点在于其强大的语义与外观双重编辑能力。所谓语义编辑，是指在保持原始图像视觉语义不变的前提下，对图像内容进行修改。我们以Qwen的吉祥物——卡皮巴拉为例，来直观展示这一能力：
+可以看到，虽然编辑后的图像大多数像素与输入图像（最左侧的图）都不一样，但依然完美地保持了卡皮巴拉的角色一致性。Qwen-Image的强大的语义编辑能力使其能够轻松的进行原创IP的多样化创作。 更进一步的，我们在Qwen Chat上围绕MBTI十六型人格，设计了一系列编辑prompt，成功地基于吉祥物卡皮巴拉，完成了MBTI表情包的制作，轻松地拓展了IP。
+此外，视角转换同样是语义编辑中的一个重要应用场景。如下方两张示例图所示，Qwen-Image-Edit不仅能够实现物体的90度旋转，还可以完成180度旋转，让我们直接看到物体的背面： 语义编辑的另一个典型应用是风格迁移。例如，输入一张人物头像，Qwen-Image-Edit可以轻松将其转换为吉卜力等多种风格，这在虚拟形象创作等场景中极具价值： 除了语义编辑，外观编辑也是常见的图像编辑需求。外观编辑强调在编辑过程中保持图像的部分区域完全不变，实现元素的增、删、改。下图展示了在图片中添加指示牌的案例，可以看到Qwen-Image-Edit不仅成功添加了指示牌，还生成了相应的倒影，细节处理十分到位。 下方是另一个有趣的例子，展示了如何在图片中删除细小的头发丝等微小物体。 此外，还可以对图像中指定的字母“n”进行颜色修改，将其变为蓝色，实现对特定元素的修改。 外观编辑在人物背景调整、服装更换等场景中同样有着广泛的应用，下面三张图片分别展示了这些实际应用场景。 Qwen-Image-Edit的另一大亮点在于其准确的的文字编辑能力，这得益于Qwen-Image在文字渲染方面的深厚积累。如下所示，以下两个案例直观展示了Qwen-Image-Edit在英文文字编辑上的强大表现： Qwen-Image-Edit同样能够直接对中文海报进行编辑，不仅可以修改海报中的大字，连细小的文字也能精准调整。 最后，让我们通过一个具体的图像编辑案例，演示如何利用链式编辑的方式，逐步修正Qwen-Image生成的书法作品中的错误： 在这幅作品中，有不少汉字存在生成错误。我们可以借助Qwen-Image-Edit，逐步修复它们。例如，可以在原图中用方框标注出需要修改的区域，指示Qwen-Image-Edit针对这些部分进行修正。这里，我们希望红框内正确地写出“稽”字，蓝色区域正确地写出“亭”字。 但实际操作中，“稽”字较为生僻，模型未能一次性完成修改。“稽”的右下角应为“旨”而非“日”。此时，我们可以进一步用红框圈出“日”的部分，让Qwen-Image-Edit对该细节进行微调，将其改为“旨”。
+是不是很神奇？通过这种链式、逐步的编辑方式，我们可以持续修正错字，直至获得理想的最终效果。 最终，我们成功获得了完全正确的兰亭集序书法版本！
+综上，我们希望Qwen-Image-Edit能够进一步推动在图像生成领域的发展，真正降低视觉内容创作的技术门槛，激发更多创新应用的可能。</description>
+    </item>
+    
+    <item>
+      <title>Qwen-Image：擅长文字渲染的创作利器</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen-image/</link>
+      <pubDate>Mon, 04 Aug 2025 22:08:30 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen-image/</guid>
+      <description>GITHUB HUGGING FACE MODELSCOPE DEMO DISCORD
+我们很高兴推出 Qwen-Image，一个20B的MMDiT模型。这是通义千问系列中首个图像生成基础模型，其在复杂文本渲染和精确图像编辑方面取得了显著进展。如需体验最新模型，欢迎访问 Qwen Chat 并选择“图像生成”功能。
+主要特性包括：
+卓越的文本渲染能力: Qwen-Image 在复杂文本渲染方面表现出色，支持多行布局、段落级文本生成以及细粒度细节呈现。无论是英语还是中文，均能实现高保真输出。 一致性的图像编辑能力: 通过增强的多任务训练范式，Qwen-Image 在编辑过程中能出色地保持编辑的一致性。 强大的跨基准性能表现: 在多个公开基准测试中的评估表明，Qwen-Image 在各类生成与编辑任务中均获得SOTA，是一个强大的图像生成基础模型。 性能表现 我们在多个公开基准上对Qwen-Image进行了全面评估，包括用于通用图像生成的GenEval、DPG和OneIG-Bench，以及用于图像编辑的GEdit、ImgEdit和GSO。Qwen-Image在所有基准测试中均取得了最先进的性能，展现出其在图像生成与图像编辑方面的强大能力。此外，在用于文本渲染的LongText-Bench、ChineseWord和TextCraft上的结果表明，Qwen-Image在文本渲染方面表现尤为出色，特别是在中文文本渲染上，大幅领先现有的最先进模型。这凸显了Qwen-Image作为先进图像生成模型的独特地位，兼具广泛的通用能力与卓越的文本渲染精度。
+示例展示 Qwen-Image的突出能力之一是能够在不同场景中实现高保真的文本渲染。我们来看下面这个中文渲染的case：
+宫崎骏的动漫风格。平视角拍摄，阳光下的古街热闹非凡。一个穿着青衫、手里拿着写着“阿里云”卡片的逍遥派弟子站在中间。旁边两个小孩惊讶的看着他。左边有一家店铺挂着“云存储”的牌子，里面摆放着发光的服务器机箱，门口两个侍卫守护者。右边有两家店铺，其中一家挂着“云计算”的牌子，一个穿着旗袍的美丽女子正看着里面闪闪发光的电脑屏幕；另一家店铺挂着“云模型”的牌子，门口放着一个大酒缸，上面写着“千问”，一位老板娘正在往里面倒发光的代码溶液。
+模型不仅仅准确展示了宫崎骏的动漫风格，店铺的牌匾“云存储”，“云计算”，“云模型”，包括酒缸上的“千问”，都随着构图的景深，被真实准确的渲染。并且保留了人物姿势、神态刻画。
+让我们再看一个中文渲染的case：
+一副典雅庄重的对联悬挂于厅堂之中，房间是个安静古典的中式布置，桌子上放着一些青花瓷，对联上左书“义本生知人机同道善思新”，右书“通云赋智乾坤启数高志远”， 横批“智启通义”，字体飘逸，中间挂在一着一副中国风的画作，内容是岳阳楼。
+模型准确了绘制了左右联和横批，并且使用了书法效果，并在中间准确的生成了岳阳楼。桌子上放着的青花瓷也看着非常真实。
+那么，模型在英文上的能力如何呢？ 让我们来看一个英文渲染的case：
+Bookstore window display. A sign displays &amp;ldquo;New Arrivals This Week&amp;rdquo;. Below, a shelf tag with the text &amp;ldquo;Best-Selling Novels Here&amp;rdquo;. To the side, a colorful poster advertises &amp;ldquo;Author Meet And Greet on Saturday&amp;rdquo; with a central portrait of the author.</description>
+    </item>
+    
+    <item>
+      <title>GSPO：迈向持续拓展的语言模型强化学习</title>
+      <link>https://qwenlm.github.io/zh/blog/gspo/</link>
+      <pubDate>Sun, 27 Jul 2025 15:00:00 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/gspo/</guid>
+      <description>PAPER DISCORD
+引言 强化学习 （Reinforcement Learning，RL）已成为拓展语言模型、增强其深度推理与问题求解能力的关键技术范式。为了持续拓展 RL，首要前提是确保稳定、鲁棒的训练过程。然而，我们观察到现有的 RL 算法（如 GRPO）在长期训练中会暴露出严重的不稳定性问题并招致不可逆转的模型崩溃，阻碍了通过增加计算以获得进一步的性能提升。
+为了能够持续拓展 RL，我们提出了 Group Sequence Policy Optimization (GSPO) 算法。不同于过去的 RL 算法，GSPO 定义了序列级别的重要性比率，并在序列层面执行裁剪、奖励和优化。相较于 GRPO，GSPO 在以下方面展现出突出优势：
+强大高效：GSPO 具备显著更高的训练效率，并且能够通过增加计算获得持续的性能提升； 稳定性出色：GSPO 能够保持稳定的训练过程，并且根本地解决了混合专家（Mixture-of-Experts，MoE）模型的 RL 训练稳定性问题； 基础设施友好：由于在序列层面执行优化，GSPO 原则上对精度容忍度更高，具有简化 RL 基础设施的诱人前景。 以上优点促成了最新的 Qwen3 模型（Instruct、Coder、Thinking）的卓越性能。
+序列级别的优化目标 设 $x$ 为查询，$\pi_{\theta_\mathrm{old}}$ 为用于采样回复的策略，$\{y_i\}_{i=1}^G$ 为采样得到的回复组，$\widehat{A}_{i}$ 为各个回复的组内相对优势，$\pi_\theta$ 为需优化的当前策略。GSPO 采用以下优化目标：
+$$ \mathcal{J}_\text{GSPO} (\theta) = \mathbb{E}_{ x \sim \mathcal{D},\, \{y_i\}_{i=1}^G \sim \pi_{\theta_\text{old}}( \cdot | x) } \left[ \frac{1}{G} \sum_{i=1}^{G} \min \left( s_{i}(\theta) \widehat{A}_{i}, \, \mathrm{clip} \left( s_{i}(\theta), 1 - {\varepsilon}, 1 + {\varepsilon} \right) \widehat{A}_{i} \right) \right], $$ 其中</description>
+    </item>
+    
+    <item>
+      <title>Qwen-MT：速度与智能翻译的完美融合</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen-mt/</link>
+      <pubDate>Thu, 24 Jul 2025 22:00:00 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen-mt/</guid>
+      <description>DEMO API DISCORD
+简介 我们通过Qwen API 推出了 Qwen-MT（qwen-mt-turbo）的最新升级版本。本次更新基于强大的 Qwen3 模型，进一步使用超大规模多语言和翻译数据对模型进行训练，全面增强其多语言理解与翻译能力，并结合强化学习技术，显著提升了翻译结果的准确性与语言流畅度。
+核心亮点包括：
+92 种语言互译：支持超过92种主流官方语言及重要方言之间的高质量互译，覆盖全球 95% 以上的人口，满足广泛的语言交流需求。 高度可控性：提供术语干预、领域提示、记忆库等专业翻译功能，并支持用户自定义提示，有效提升模型在复杂、专业或特定应用场景下的翻译表现。 低延迟、低成本：采用轻量级 MoE（Mixture of Experts）架构，在保证卓越性能的同时实现更快的响应速度和更低的 API 调用价格（每百万输出token低至2元），更适合高并发、实时性要求高的应用场景。 自动评估 在中英、英德多领域翻译以及 WMT24 多语言翻译任务中，Qwen-MT 显著优于同规模模型，如 GPT-4.1-mini、Gemini-2.5-Flash 和 Qwen3-8B。甚至与 GPT-4.1、Gemini-2.5-Pro、Qwen3-235B-A22B 等顶级大模型相比，翻译效果依然毫不逊色，凭借轻量化的模型架构设计带来快速的翻译体验。
+人工评估 翻译自动评测存在一定的局限性。为更准确地评估翻译质量，我们针对中文、英语、日语、韩语、泰语、阿拉伯语、意大利语、俄语、西班牙语、法语等主要语言，开展了基于真实场景翻译数据的人工评测。每条测试样本均由三名专业译员独立评分并进行交叉校准，确保评估结果的客观性与可靠性。在合格率、优良率上，Qwen-MT 均展现出显著优势，体现出其在实际应用中的卓越翻译能力。
+以下是一些翻译样例：
+原文 Qwen-MT译文 Make your cubicle neat, tidy and make it a homey charm. 让你的隔间整洁有序，营造出温馨舒适的氛围。 Little study hack for y’all… do your homework/assignments the first day it was given to you… NO PROCRASTINATING!!! the day it was assigned 给大家一个学习小技巧……拿到作业/任务的第一天就完成它……千万别拖延！就在布置的当天完成！ Kim also attended her ex&amp;rsquo;s first Donda listening party at Atlanta&amp;rsquo;s Mercedes-Benz Stadium on July 22.</description>
+    </item>
+    
+    <item>
+      <title>Qwen3-Coder: 在世界中自主编程</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen3-coder/</link>
+      <pubDate>Tue, 22 Jul 2025 21:00:00 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen3-coder/</guid>
+      <description>GITHUB HUGGING FACE MODELSCOPE DISCORD
+今天我们正式发布 Qwen3-Coder，这是我们迄今为止最具代理能力的代码模型。Qwen3-Coder 拥有多个尺寸，但我们迫不及待地给大家提供当前最强大的版本，Qwen3-Coder-480B-A35B-Instruct。这是一个总参数量 480B，激活 35B 的 MoE 模型，原生支持 256K token 的上下文并可通过 YaRN 扩展到 1M token，拥有卓越的代码和 Agent 能力。Qwen3-Coder-480B-A35B-Instruct 在 Agentic Coding、Agentic Browser-Use 和 Agentic Tool-Use 上取得了开源模型的 SOTA 效果，可以与 Claude Sonnet4 媲美。
+与此同时，我们还推出并开源了一款用于代理式编程的命令行工具：Qwen Code。Qwen Code 基于 Gemini Code 进行二次开发，但我们进行了 prompt 和工具调用协议适配，使得 Qwen Code 可以最大程度激发 Qwen3-Coder 在 Agentic Coding 任务上的表现。另外，Qwen3-Coder 可以和社区优秀的编程工具结合，如 Claude Code、Cline 等，作为一款基础模型，我们期待在数字世界的任何角落都可以使用它，Agentic Coding in the World!
+Qwen3-Coder Pre-Training 我们在预训练阶段上仍然在努力，这次 Qwen3-Coder 我们从不同角度进行 Scaling，以提升模型的代码能力：
+数据扩展：总计 7.5T（代码占比 70%），在保持通用与数学能力的同时，具备卓越的编程能力； 上下文扩展：原生支持 256K 上下文，借助 YaRN 可拓展至 1M，专为仓库级和动态数据（如 Pull Request）优化，助力 Agentic Coding； 合成数据扩展：利用 Qwen2.</description>
+    </item>
+    
+    <item>
+      <title>Time to Speak Some Dialects, Qwen-TTS!</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen-tts/</link>
+      <pubDate>Fri, 27 Jun 2025 15:01:34 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen-tts/</guid>
+      <description>API 简介 我们通过 Qwen API 更新了 Qwen-TTS ( qwen-tts-latest or qwen-tts-2025-05-22 ) 的最新版本。Qwen-TTS 使用了超过 300 万小时的大规模语料库进行训练，合成效果实现了人类级别的自然度和表现力。比较亮眼的是，Qwen-TTS 会根据输入文本自动调整韵律、节奏和情绪变化。此外，Qwen-TTS 支持生成三种中文方言，包括北京话、上海话和四川话。
+目前，Qwen-TTS 支持七种中英双语音色，包括 Cherry、Ethan、Chelsie、Serena、Dylan（北京话）、Jada（上海话） 和 Sunny（四川话），更多语言和风格选项即将在近期推出。
+中文方言样例 这里有一些样例展示了 Qwen-TTS 在中文方言上的自然生成能力。
+音色方言种类文本合成样例Dylan北京话我们家那边后面有一个后山，就护城河那边，完了呢我们就在山上啊就其实也没什么，就是在土坡上跑来跑去，然后谁捡个那个嗯比较威风的棍，完了我们就呃得瞎打呃，要不就是什么掏个洞啊什么的。得有自己的想法，别净跟着别人瞎起哄，多动动脑子，有点儿结构化的思维啥的。Jada上海话侬只小赤佬，啊呀，数学句子错它八道题，还想吃肯德基啊！夜到麻将队三缺一啊，嘿嘿，叫阿三头来顶嘛！哦，提前上料这样产品，还要卖 300 块硬币啊。侬来帮伊向暖吧，天光已经暗转亮哉。Sunny四川话胖娃胖嘟嘟，骑马上成都，成都又好耍。胖娃骑白马，白马跳得高。胖娃耍关刀，关刀耍得圆。胖娃吃汤圆。他一辈子的使命就是不停地爬哟，爬到大海头上去，不管有好多远！额外结果 Qwen-TTS 生成的效果目前已经达到了人类水平，其在 SeedTTS-Eval 评测集上的指标如下：
+音色词错误率 WER (↓) 音色相似度 SIM (↑) zhenhardzhenhardChelsie1.2562.0046.1710.6580.4730.662Serena1.</description>
+    </item>
+    
+    <item>
+      <title>Qwen VLo: 从“看懂”世界到“描绘”世界</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen-vlo/</link>
+      <pubDate>Thu, 26 Jun 2025 22:00:04 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen-vlo/</guid>
+      <description>QWEN CHAT DISCORD
+介绍 多模态大模型的演进正在不断突破我们对技术边界的认知。从最初的 QwenVL 到如今的 Qwen2.5 VL ，我们在提升模型对图像内容的理解能力方面取得了一些进展。今天，我们正式推出 Qwen VLo ——一个多模态统一理解与生成模型。这一全新升级的模型不仅能够“看懂”世界，更能基于理解进行高质量的再创造，真正实现了从感知到生成的跨越。需要注意的是，这是一款预览版本，您可以通过 Qwen Chat 访问它。您可以直接发送类似“生成一张可爱猫咪的图片”的提示来生成图像，或者上传一张猫咪的图片并要求“给猫咪头上加顶帽子”来修改图像。图像的生成过程如下所示:
+生成过程：发挥你想象力，将你的想法变成现实
+正如视频中展示的生成过程，Qwen VLo 以一种渐进式生成方式，从左到右、从上到下逐步清晰地构建整幅图片。在生成过程中，模型会对预测的内容不断调整和优化，从而确保最终结果更加和谐一致。这种生成机制不仅提升了视觉效果，还为用户带来了更灵活、更可控的创作体验。
+从理解到创造：更精准的多模态生成能力 Qwen VLo在原始多模态理解与生成能力上进行了全面升级，显著增强了对图像内容的理解深度，并在此基础上实现了更加准确和一致的生成效果。以下是 Qwen VLo 的核心亮点：
+更精准的内容理解与再创造 以往的多模态模型在生成过程中容易出现语义不一致的问题，例如将汽车误生成其他类型的物体，或者无法保留原图的关键结构特征。而 Qwen VLo 通过更强大的细节捕捉能力，能够在生成过程中保持高度的语义一致性。例如，当用户输入一张汽车的照片并要求“更换颜色”时，Qwen VLo 不仅能准确识别车型，还能保留其原有的结构特征，同时完成色彩风格的自然转换，让生成结果既符合预期又不失真实感。
+支持开放指令编辑修改生成 用户可以通过自然语言提出各种创意性指令，如“将这张画风改为梵高风格”、“让这张照片看起来像19世纪的老照片”或“给这张图片添加一个晴朗的天空”。Qwen VLo 能够灵活响应这些开放性指令，并生成符合用户预期的结果。无论是艺术风格迁移、场景重构还是细节修饰，模型都能轻松应对。甚至一些传统的视觉感知人物如预测深度图、分割图、检测图以及边缘信息等也可以通过编辑指令轻松完成。更进一步，像很多更复杂的指令，比如一条指令中同时包含修改物体、修改文字、更换背景，模型也能轻松完成。
+多语言指令支持 Qwen VLo 支持包括中文、英文在内的多种语言指令，打破了语言壁垒，为全球用户提供了统一且便捷的交互体验。无论您使用哪种语言，只需简单描述您的需求，模型便能快速理解并输出理想结果。
+样例 Qwen VLo 更像一个人类画师, 根据自己的理解再进行创作. 下面是一些具体的例子。
+Qwen VLo 能够直接生成图像，并对其进行修改，例如替换背景、添加主体、进行风格迁移，甚至可以完成基于开放指令的大幅修改，包括检测和分割等视觉感知任务。
+A cute Shiba InuNextUser生成一个可爱的柴犬
+Translation: Generate a cute Shiba Inu
+Qwen-VLoUser背景改成草原
+Translation: Change the background to a grassland</description>
+    </item>
+    
+    <item>
+      <title>Qwen3 Embedding：新一代文本表征与排序模型</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen3-embedding/</link>
+      <pubDate>Thu, 05 Jun 2025 21:00:00 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen3-embedding/</guid>
+      <description>GITHUB HUGGING FACE MODELSCOPE DISCORD
+我们正式发布 Qwen3 Embedding 系列模型, Qwen 模型家族的新成员。该系列模型专为文本表征、检索与排序任务设计，基于 Qwen3 基础模型进行训练，充分继承了 Qwen3 在多语言文本理解能力方面的优势。在多项基准测试中，Qwen3 Embedding 系列在文本表征和排序任务中展现了卓越的性能。我们使用了 Apache 2.0 协议在 Hugging Face 和 ModelScope 上开源了这一系列的文本表征及排序模型，并在 GitHub 公布了技术报告及相关代码。
+排序模型评测结果
+Model Param MTEB-R CMTEB-R MMTEB-R MLDR MTEB-Code FollowIR Qwen3-Embedding-0.6B 0.6B 61.82 71.02 64.64 50.26 75.41 5.09 Jina-multilingual-reranker-v2-base 0.3B 58.22 63.37 63.73 39.66 58.98 -0.68 gte-multilingual-reranker-base 0.3B 59.51 74.08 59.44 66.33 54.18 -1.64 BGE-reranker-v2-m3 0.6B 57.03 72.16 58.36 59.51 41.38 -0.01 Qwen3-Reranker-0.6B 0.</description>
+    </item>
+    
+    <item>
+      <title>Qwen3：思深，行速</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen3/</link>
+      <pubDate>Tue, 29 Apr 2025 04:00:00 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen3/</guid>
+      <description>QWEN CHAT GitHub Hugging Face ModelScope Kaggle DEMO DISCORD
+引言 今天，我们宣布推出 Qwen3，这是 Qwen 系列大型语言模型的最新成员。我们的旗舰模型 Qwen3-235B-A22B 在代码、数学、通用能力等基准测试中，与 DeepSeek-R1、o1、o3-mini、Grok-3 和 Gemini-2.5-Pro 等顶级模型相比，表现出极具竞争力的结果。此外，小型 MoE 模型 Qwen3-30B-A3B 的激活参数数量是 QwQ-32B 的 10%，表现更胜一筹，甚至像 Qwen3-4B 这样的小模型也能匹敌 Qwen2.5-72B-Instruct 的性能。
+我们开源了两个 MoE 模型的权重：Qwen3-235B-A22B，一个拥有 2350 多亿总参数和 220 多亿激活参数的大模型，以及Qwen3-30B-A3B，一个拥有约 300 亿总参数和 30 亿激活参数的小型 MoE 模型。此外，六个 Dense 模型也已开源，包括 Qwen3-32B、Qwen3-14B、Qwen3-8B、Qwen3-4B、Qwen3-1.7B 和 Qwen3-0.6B，均在 Apache 2.0 许可下开源。
+Models Layers Heads (Q / KV) Tie Embedding Context Length Qwen3-0.6B 28 16 / 8 Yes 32K Qwen3-1.</description>
+    </item>
+    
+    <item>
+      <title>QVQ-Max：有依据地思考</title>
+      <link>https://qwenlm.github.io/zh/blog/qvq-max-preview/</link>
+      <pubDate>Fri, 28 Mar 2025 00:00:04 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qvq-max-preview/</guid>
+      <description>QWEN CHAT GITHUB HUGGING FACE MODELSCOPE DISCORD
+介绍 去年12月，我们推出了 QVQ-72B-Preview, 作为一个探索模型，它存在很多问题。今天，我们正式推出 QVQ-Max 视觉推理模型的第一版。这款模型的特点是，它不仅能够“看懂”图片和视频里的内容，还能结合这些信息进行分析、推理，甚至给出解决方案。从数学题到生活小问题，从编程代码到艺术创作，QVQ-Max 都表现出了不俗的能力。虽然这只是我们的第一个版本，但它的潜力已经让人眼前一亮。
+MathVision 是汇集各类困难多模态数学的 benchmark，我们通过模型在上面的表现来评估模型解决复杂数学问题的能力。如图所示，通过调整模型 thinking 的最大长度，我们会发现模型在 MathVision 的准确率会持续提升，这展现了模型巨大的潜力。
+接下来，我们就来聊聊 QVQ-Max 的设计初衷、实际能力以及它能为大家做些什么。
+为什么需要视觉推理？ 传统的AI模型大多依赖文字输入，比如回答问题、写文章或者生成代码。但现实生活中，很多信息并不是用文字表达的，而是以图片、图表甚至视频的形式存在。一张图片可能包含丰富的细节，比如颜色、形状、位置关系等，而这些信息往往比文字更直观、也更复杂。
+举个例子，如果你想知道一张建筑图纸是否合理，光靠描述可能很难判断，但如果能看到图纸并结合专业知识去分析，就会容易得多。这就是视觉推理的意义——它让 AI 不仅能“看”，还能“理解”并“思考”。
+我们设计 QVQ-Max 的目标很简单：让它成为一个既“眼尖”又“脑快”的助手，帮助用户解决各种实际问题。
+核心能力：从观察到推理 QVQ-Max的能力可以总结为三个方面：细致观察、深入推理和灵活应用。下面分别来说说它在这些方面的表现。
+细致观察：抓住每一个细节
+QVQ-Max 对图片的解析能力非常强，无论是复杂的图表还是日常生活中随手拍的照片，它都能快速识别出关键元素。比如，它可以告诉你一张照片里有哪些物品、有什么文字标识，甚至还能指出一些你可能忽略的小细节。
+深入推理：不只是“看到”，还要“想到”
+仅仅识别出图片里的内容还不够，QVQ-Max 还能进一步分析这些信息，并结合背景知识得出结论。例如，在一道几何题中，它可以根据题目附带的图形推导出答案；在一段视频里，它能根据画面内容推测出接下来可能发生的情节。
+灵活应用：从解答问题到创作
+除了分析和推理，QVQ-Max 还能做一些有趣的事情，比如帮你设计插画、生成短视频脚本，甚至根据你的需求创作角色扮演的内容。如果你上传一幅草稿，它可能会帮你完善成一幅完整的作品；上传一个日常照片，它可以化身犀利的评论家，占卜师。
+样例 QVQ-Max 的应用范围很广，无论是在学习、工作还是日常生活中，它都能派上用场。
+职场工具：在工作中，QVQ-Max 可以协助完成数据分析、信息整理、编程写代码等任务。 学习助手：对于学生来说，QVQ-Max 可以帮助解答数学、物理等科目的难题，尤其是那些配有图表的题目。它还能通过直观的方式讲解复杂概念，让学习变得更轻松。 生活小帮手：在生活中，QVQ-Max 也能提供不少实用建议。比如，它可以根据你的衣柜照片推荐穿搭方案，或者根据食谱图片指导你如何烹饪一道新菜。 Multi-image RecognitionNextQVQ-Max-PreviewMathematical ReasoningNextQVQ-Max-PreviewInterpreting Palm Readings (For Reference Only)NextQVQ-Max-PreviewVideo UnderstandingNextQVQ-Max-PreviewLearn to code by watching videosNextQVQ-Max-Preview下一步 目前的 QVQ-Max 只是第一版，还有很多可以提升的空间。接下来，我们会重点关注以下几个方向：</description>
+    </item>
+    
+    <item>
+      <title>Qwen2.5 Omni: See, Hear, Talk, Write, Do It All!</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen2.5-omni/</link>
+      <pubDate>Thu, 27 Mar 2025 00:00:45 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen2.5-omni/</guid>
+      <description>QWEN CHAT HUGGING FACE MODELSCOPE DASHSCOPE GITHUB PAPER DEMO DISCORD
+我们发布了 Qwen2.5-Omni，Qwen 模型家族中新一代端到端多模态旗舰模型。该模型专为全方位多模态感知设计，能够无缝处理文本、图像、音频和视频等多种输入形式，并通过实时流式响应同时生成文本与自然语音合成输出。想要体验最新的模型，请访问 Qwen Chat 并选择Qwen2.5-Omni-7B。该模型现已在 Hugging Face、ModelScope、DashScope和 GitHub上开放，技术文档请查阅我们的论文。您可以通过我们的Demo体验互动功能，或加入我们的Discord进行讨论。
+主要特点：
+全能创新架构：我们提出了一种全新的Thinker-Talker架构，这是一种端到端的多模态模型，旨在支持文本/图像/音频/视频的跨模态理解，同时以流式方式生成文本和自然语音响应。我们提出了一种新的位置编码技术，称为TMRoPE（Time-aligned Multimodal RoPE），通过时间轴对齐实现视频与音频输入的精准同步。
+实时音视频交互：架构旨在支持完全实时交互，支持分块输入和即时输出。
+自然流畅的语音生成：在语音生成的自然性和稳定性方面超越了许多现有的流式和非流式替代方案。
+全模态性能优势：在同等规模的单模态模型进行基准测试时，表现出卓越的性能。Qwen2.5-Omni在音频能力上优于类似大小的Qwen2-Audio，并与Qwen2.5-VL-7B保持同等水平。
+卓越的端到端语音指令跟随能力：Qwen2.5-Omni在端到端语音指令跟随方面表现出与文本输入处理相媲美的效果，在MMLU通用知识理解和GSM8K数学推理等基准测试中表现优异。
+Your browser does not support the video tag.模型架构 Qwen2.5-Omni采用Thinker-Talker双核架构。Thinker模块如同大脑，负责处理文本、音频、视频等多模态输入，生成高层语义表征及对应文本内容；Talker模块则类似发声器官，以流式方式接收Thinker实时输出的语义表征与文本，流畅合成离散语音单元。Thinker基于Transformer解码器架构，融合音频/图像编码器进行特征提取；Talker则采用双轨自回归Transformer解码器设计，在训练和推理过程中直接接收来自Thinker的高维表征，并共享全部历史上下文信息，形成端到端的统一模型架构。
+模型性能 Qwen2.5-Omni在包括图像，音频，音视频等各种模态下的表现都优于类似大小的单模态模型以及封闭源模型，例如Qwen2.5-VL-7B、Qwen2-Audio和Gemini-1.5-pro。在多模态任务OmniBench，Qwen2.5-Omni达到了SOTA的表现。此外，在单模态任务中，Qwen2.5-Omni在多个领域中表现优异，包括语音识别（Common Voice）、翻译（CoVoST2）、音频理解（MMAU）、图像推理（MMMU、MMStar）、视频理解（MVBench）以及语音生成（Seed-tts-eval和主观自然听感）。
+下一步 我们期待听到您的反馈，并看到您使用 Qwen2.5-Omni 开发的创新应用。在不久的将来，我们将着力增强模型对语音指令的遵循能力，并提升音视频协同理解能力。更值得期待的是，我们将持续拓展多模态能力边界，以发展成为一个全面的通用模型！</description>
+    </item>
+    
+    <item>
+      <title>Qwen2.5-VL-32B: 更聪明、更轻量!</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen2.5-vl-32b/</link>
+      <pubDate>Mon, 24 Mar 2025 00:00:04 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen2.5-vl-32b/</guid>
+      <description>QWEN CHAT GITHUB HUGGING FACE MODELSCOPE DISCORD
+介绍 今年一月底，我们推出了 Qwen2.5-VL 系列模型，获得了社区的广泛关注和积极反馈。在 Qwen2.5-VL 系列的基础上，我们使用强化学习持续优化模型，并使用 Apache 2.0 协议开源 32B 这个备受喜爱的参数规模的新 VL 模型—— Qwen2.5-VL-32B-Instruct。相比此前发布的 Qwen2.5-VL 系列模型，本次推出的 32B 模型的特点如下：
+回复更符合人类主观偏好：调整了输出风格，使回答更加详细、格式更规范，并更符合人类偏好。 数学推理能力：复杂数学问题求解的准确性显著提升。 图像细粒度理解与推理：在图像解析、内容识别以及视觉逻辑推导等任务中表现出更强的准确性和细粒度分析能力。 性能表现 我们与业内先进的同规模模型进行比较，包括近期推出的 Mistral-Small-3.1-24B 和 Gemma-3-27B-IT， Qwen2.5-VL-32B-Instruct 展现出了明显的优势，甚至超越了更大规模的 Qwen2-VL-72B-Instruct 模型。尤其是在多模态任务中，例如 MMMU、MMMU-Pro 和 MathVista，这些任务强调复杂的多步骤推理，Qwen2.5-VL-32B-Instruct 表现尤为突出。在注重主观用户体验评估的 MM-MT-Bench 基准测试中，该模型相较于其前代 Qwen2-VL-72B-Instruct 取得了显著进步。
+除了在视觉能力上优秀，Qwen2.5-VL-32B-Instruct 在纯文本能力上也达到了同规模的最优表现。
+样例 Fine-grained Image Understanding and ReasoningNextUserI am driving a large truck on this road, and it is now 12 o&amp;rsquo;clock. Can I reach a place 110 kilometers away before 13 o&amp;rsquo;clock?</description>
+    </item>
+    
+    <item>
+      <title>QwQ-32B: 领略强化学习之力</title>
+      <link>https://qwenlm.github.io/zh/blog/qwq-32b/</link>
+      <pubDate>Thu, 06 Mar 2025 00:00:04 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwq-32b/</guid>
+      <description>QWEN CHAT Hugging Face ModelScope DEMO DISCORD
+大规模强化学习（RL）有潜力超越传统的预训练和后训练方法来提升模型性能。近期的研究表明，强化学习可以显著提高模型的推理能力。例如，DeepSeek R1 通过整合冷启动数据和多阶段训练，实现了最先进的性能，使其能够进行深度思考和复杂推理。这一次，我们探讨了大规模强化学习（RL）对大语言模型的智能的提升作用，同时很高兴推出我们最新的推理模型 QwQ-32B。这是一款拥有 320 亿参数的模型，其性能可与具备 6710 亿参数（其中 370 亿被激活）的 DeepSeek-R1 媲美。这一成果突显了将强化学习应用于经过大规模预训练的强大基础模型的有效性。此外，我们还在推理模型中集成了与 Agent 相关的能力，使其能够在使用工具的同时进行批判性思考，并根据环境反馈调整推理过程。我们希望我们的一点努力能够证明强大的基础模型叠加大规模强化学习也许是一条通往通用人工智能的可行之路。
+QwQ-32B 已在 Hugging Face 和 ModelScope 开源，采用了 Apache 2.0 开源协议。大家可通过 Qwen Chat 直接进行体验！
+模型效果 QwQ-32B 在一系列基准测试中进行了评估，测试了数学推理、编程能力和通用能力。以下结果展示了 QwQ-32B 与其他领先模型的性能对比，包括 DeepSeek-R1-Distilled-Qwen-32B、DeepSeek-R1-Distilled-Llama-70B、o1-mini 以及原始的 DeepSeek-R1。
+强化学习 我们在冷启动的基础上开展了大规模强化学习。在初始阶段，我们特别针对数学和编程任务进行了 RL 训练。与依赖传统的奖励模型（reward model）不同，我们通过校验生成答案的正确性来为数学问题提供反馈，并通过代码执行服务器评估生成的代码是否成功通过测试用例来提供代码的反馈。随着训练轮次的推进，这两个领域中的性能均表现出持续的提升。在第一阶段的 RL 过后，我们增加了另一个针对通用能力的 RL。此阶段使用通用奖励模型和一些基于规则的验证器进行训练。我们发现，通过少量步骤的通用 RL，可以提升其他通用能力，同时在数学和编程任务上的性能没有显著下降。
+API 以下我们展示了一段简短的示例代码，说明如何通过 API 使用 QwQ-32B。
+from openai import OpenAI import os # Initialize OpenAI client client = OpenAI( # If the environment variable is not configured, replace with your API Key: api_key=&amp;#34;sk-xxx&amp;#34; # How to get an API Key：https://help.</description>
+    </item>
+    
+    <item>
+      <title>&lt;think&gt;...&lt;/think&gt; QwQ-Max-Preview</title>
+      <link>https://qwenlm.github.io/zh/blog/qwq-max-preview/</link>
+      <pubDate>Tue, 25 Feb 2025 02:00:04 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwq-max-preview/</guid>
+      <description>QWEN CHAT DISCORD
+这篇博客出自 QwQ-Max-Preview 之手。希望各位看官喜欢！
+介绍 &amp;lt;think&amp;gt;
+好的，用户希望我为他们的博客创建一个标题和介绍，宣布 QwQ-Max-Preview 的发布。让我先整理一下他们提到的关键点。 首先，该模型属于通义千问系列，基于 Qwen2.5-Max 构建。这是一个预览版本，因此他们可能希望强调这是正式发布前的抢先体验。主要优势包括深度推理、数学、编程、通用领域以及与 Agent 相关的任务。他们还提到了未来的更新计划，并将开源代码，采用 Apache 2.0 许可证。 对于标题，我需要让它吸引人并包含模型名称。也许可以这样写：“隆重推出 QwQ-Max-Preview ：深度推理与多领域精通的全新飞跃”。这突出了预览状态和关键功能。 介绍部分应简要总结公告内容。以对发布的兴奋之情开头，提到它基于 Qwen2.5-Max ，强调其在推理、数学、编程和 Agent 任务方面的强大能力。同时指出这是一个预览版本，未来会有更新，并最终开源。保持简洁，不展开解释，按照用户要求避免使用 Markdown，段落也要简短。最后检查是否涵盖了所有要点：模型名称、基于 Qwen2.5、预览状态、推理/数学/编程/Agent 任务的优势、未来更新、以及 Apache 2.0 开源许可。是的，这些都包括了。好了，现在开始整合内容。 &amp;lt;/think&amp;gt;
+我们很高兴向大家介绍 QwQ-Max-Preview，这是 Qwen 系列的最新成果。这一版本基于 Qwen2.5-Max 构建，在数学、编程以及通用任务中展现了更强的能力，同时在与 Agent 相关的工作流中也有不错的表现。作为即将发布的 QwQ-Max 的预览版，这个版本还在持续优化中。我们计划在不久的将来以 Apache 2.0 许可协议开源发布 QwQ-Max 以及 Qwen2.5-Max。我们期待与大家一起探索智能推理的更多可能性！ 示例 CodingNextQwQ-Max-PreviewGameNextQwQ-Max-PreviewGameNextQwQ-Max-PreviewAgentNextQwQ-Max-PreviewAgentNextQwQ-Max-PreviewMathNextQwQ-Max-PreviewCreative WritingNextQwQ-Max-PreviewSearchNextQwQ-Max-Preview接下来的工作 &amp;lt;think&amp;gt;</description>
+    </item>
+    
+    <item>
+      <title>Qwen2.5-Max：探索大规模 MoE 模型的智能</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen2.5-max/</link>
+      <pubDate>Tue, 28 Jan 2025 23:00:04 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen2.5-max/</guid>
+      <description>QWEN CHAT API DEMO DISCORD
+过去有一种观点认为，持续地增长数据规模和模型参数规模是一种通向 AGI 的可能的路径。然而，整个大模型社区对于训练超大规模的模型的经验都相对匮乏，不论是稠密模型还是 MoE 模型。近期，DeepSeek V3 的发布让大家了解到超大规模 MoE 模型的效果及实现方法，而同期，Qwen 也在研发超大规模的 MoE 模型 Qwen2.5-Max，使用超过 20 万亿 token 的预训练数据及精心设计的后训练方案进行训练。今天，我们很高兴能给大家分享 Qwen2.5-Max 目前所取得的成果。大家可以通过 API 的方式进行访问，也可以登录 Qwen Chat 进行体验！
+性能 我们将 Qwen2.5-Max 与业界领先的模型（无论是闭源还是开源）在一系列广受关注的基准测试上进行了对比评估。这些基准测试包括测试大学水平知识的 MMLU-Pro、评估编程能力的 LiveCodeBench，全面评估综合能力的 LiveBench，以及近似人类偏好的 Arena-Hard。我们的评估结果涵盖了基座模型和指令模型的性能得分。
+首先，我们直接对比了指令模型的性能表现。指令模型即我们平常使用的可以直接对话的模型。我们将 Qwen2.5-Max 与业界领先的模型（包括 DeepSeek V3、GPT-4o 和 Claude-3.5-Sonnet）的性能结果进行了对比。
+在 Arena-Hard、LiveBench、LiveCodeBench 和 GPQA-Diamond 等基准测试中，Qwen2.5-Max 的表现超越了 DeepSeek V3。同时在 MMLU-Pro 等其他评估中也展现出了极具竞争力的成绩。
+在基座模型的对比中，由于无法访问 GPT-4o 和 Claude-3.5-Sonnet 等闭源模型的基座模型，我们将 Qwen2.5-Max 与目前领先的开源 MoE 模型 DeepSeek V3、最大的开源稠密模型 Llama-3.1-405B，以及同样位列开源稠密模型前列的 Qwen2.5-72B 进行了对比。对比结果如下图所示。
+我们的基座模型在大多数基准测试中都展现出了显著的优势。我们相信，随着后训练技术的不断进步，下一个版本的 Qwen2.</description>
+    </item>
+    
+    <item>
+      <title>Qwen2.5-1M: 支持100万Token上下文的开源Qwen模型</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen2.5-1m/</link>
+      <pubDate>Mon, 27 Jan 2025 00:00:03 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen2.5-1m/</guid>
+      <description>Tech Report HuggingFace ModelScope Qwen Chat HuggingFace Demo ModelScope Demo DISCORD
+简介 两个月前，我们升级了 Qwen2.5-Turbo，使其支持最多一百万个Tokens的上下文长度。今天，我们正式推出开源的 Qwen2.5-1M 模型及其对应的推理框架支持。以下是本次发布的亮点：
+开源模型： 我们发布了两个新的开源模型，分别是 Qwen2.5-7B-Instruct-1M 和 Qwen2.5-14B-Instruct-1M，这是我们首次将开源 Qwen 模型的上下文扩展到 1M 长度。
+推理框架： 为了帮助开发者更高效地部署 Qwen2.5-1M 系列模型，我们完全开源了基于 vLLM 的推理框架，并集成了稀疏注意力方法。该框架在处理 1M 长度输入时的速度能够提升 3倍到7倍。
+技术报告： 我们还分享了 Qwen2.5-1M 系列背后的技术细节，包括训练和推理框架的设计思路以及消融实验的结果。
+现在，你可以访问我们在 Huggingface 和 Modelscope 上的在线演示来体验 Qwen2.5-1M 模型。
+另外，我们最近也推出了 Qwen Chat ，一个基于 Qwen 系列的 AI 助手。你可以与他对话、编程、生成图像与视频，使用搜索以及调用工具等功能。你也可以在 Qwen Chat 中与使用上下文长度同样为 1M 的 Qwen2.5-Turbo 模型进行长序列处理。
+模型性能 首先，让我们来看看 Qwen2.5-1M 系列模型在长上下文任务和短文本任务中的性能表现。
+长上下文任务 在上下文长度为100万 Tokens 的大海捞针（Passkey Retrieval）任务中，Qwen2.5-1M 系列模型能够准确地从 1M 长度的文档中检索出隐藏信息，其中仅有7B模型出现了少量错误。</description>
+    </item>
+    
+    <item>
+      <title>Qwen2.5 VL！Qwen2.5 VL！Qwen2.5 VL！</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen2.5-vl/</link>
+      <pubDate>Sun, 26 Jan 2025 19:08:41 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen2.5-vl/</guid>
+      <description>QWEN CHAT GITHUB HUGGING FACE MODELSCOPE DISCORD
+我们发布了 Qwen2.5-VL，Qwen 模型家族的旗舰视觉语言模型，对比此前发布的 Qwen2-VL 实现了巨大的飞跃。欢迎访问 Qwen Chat 并选择 Qwen2.5-VL-72B-Instruct 进行体验。此外，我们在 Hugging Face 和 ModelScope 上开源了 Qwen2.5-VL 的 Base 和 Instruct 模型，包含 3B、7B 和 72B 在内的 3 个模型尺寸。
+Qwen2.5-VL 的主要特点如下所示：
+感知更丰富的世界：Qwen2.5-VL 不仅擅长识别常见物体，如花、鸟、鱼和昆虫，还能够分析图像中的文本、图表、图标、图形和布局。
+Agent：Qwen2.5-VL 直接作为一个视觉 Agent，可以推理并动态地使用工具，初步具备了使用电脑和使用手机的能力。
+理解长视频和捕捉事件：Qwen2.5-VL 能够理解超过 1 小时的视频，并且这次它具备了通过精准定位相关视频片段来捕捉事件的新能力。
+视觉定位：Qwen2.5-VL 可以通过生成 bounding boxes 或者 points 来准确定位图像中的物体，并能够为坐标和属性提供稳定的 JSON 输出。
+结构化输出：对于发票、表单、表格等数据，Qwen2.5-VL 支持其内容的结构化输出，惠及金融、商业等领域的应用。
+模型性能 我们对视觉语言模型进行了全面的评估，比较了 SOTA 模型以及同尺寸规模模型中表现最好的模型。在旗舰模型 Qwen2.5-VL-72B-Instruct 的测试中，它在一系列涵盖多个领域和任务的基准测试中表现出色，包括大学水平的问题、数学、文档理解、视觉问答、视频理解和视觉 Agent。值得注意的是，Qwen2.5-VL 在理解文档和图表方面具有显著优势，并且能够作为视觉 Agent 进行操作，而无需特定任务的微调。
+在较小的模型方面，Qwen2.5-VL-7B-Instruct 在多个任务中超越了 GPT-4o-mini，而 Qwen2.</description>
+    </item>
+    
+    <item>
+      <title>通过全局负载均衡提升混合专家模型的性能和特异化程度</title>
+      <link>https://qwenlm.github.io/zh/blog/global-load-balance/</link>
+      <pubDate>Tue, 21 Jan 2025 00:00:03 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/global-load-balance/</guid>
+      <description>GITHUB HUGGING FACE MODELSCOPE DISCORD
+引言 混合专家模型（MoEs）通过路由机制动态并稀疏地激活模型参数，使得能高效地增大模型参数规模。基于 TopK 机制的稀疏激活会在训练中会遇到专家激活不均衡的问题：少数被频繁选择的专家会被优化得更多，进一步使得这些专家被更频繁地选择，最终导致只选择少数专家，造成剩余专家的冗余。因此，MoE 在训练中需要引入额外的辅助损失（load balance loss，LBL）来鼓励专家的选择趋于均衡。
+目前主流 MoE 训练框架中 LBL 实现其实是局部的负载均衡，这使得模型需要将局部的输入都均匀分配给不同的专家。然而，局部的输入往往只来自个别领域，局部负载均衡会让模型将所有领域的输入都均匀分配。这种均匀分配会阻碍某些专家更多处理特定领域的数据，也即阻碍专家出现领域层次的分化特征。我们发现，将局部的负载均衡放松到全局的负载均衡，能显著增强专家的特异化并提高模型性能。
+从局部均衡到全局均衡 LBL 的计算公式为 $N_E \sum_{i=1}^{N_E} f_ip_i$ ，其中 $N_E$ 为专家数， $f_i$ 为专家 i 被选择的频率， $p_i$ 为路由赋予专家 i 的平均分数。目前 Megatron-mcore 等主流框架中的 LBL 都是在每一张卡上统计计算后再全局平均，这使得 $f_i$ 也是在局部统计，而优化 LBL 也鼓励模型将每个局部的输入都均匀分配给所有的专家。这也解释了为什么目前大部分 MoE 工作没有观察到领域层面的专家分化。
+得益于 LBL 计算的格式，我们可以通过通信不同节点的 $f_i$ 来将局部的 LBL 转化为全局的 LBL。因为 $f_i$ 只是一个专家数大小的向量，即使是在全局通信的情况下也不会带来明显的开销。此外由于 LBL 的计算与模型其它部分的计算相对独立，还可以用计算掩盖等策略进一步消除同步 $f_i$ 的通信开销。
+扩大均衡的范围带来稳定的提升 我们在三种参数规模（3.4B 激活 0.6B, 15B 激活 2.54B，43B 激活 6.6B）下分别训练了 120B 和 400B tokens，对比了不同的均衡范围（Balance BSZ）对模型性能的影响。所有模型都使用了细粒度专家、共享专家及 dropless 策略（专家不会抛弃超过容量的tokens）。可以看到，将均衡范围从一般框架实现的 4，8 或者 16 增大到 128 以上后模型在 Benchmark 指标和 PPL 都有明显提升。</description>
+    </item>
+    
+    <item>
+      <title>面向有效的数学推理过程监督</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen2.5-math-prm/</link>
+      <pubDate>Tue, 14 Jan 2025 00:00:03 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen2.5-math-prm/</guid>
+      <description>GITHUB HUGGING FACE MODELSCOPE DISCORD
+引言 近年来，大型语言模型（LLMs）在数学推理方面取得了显著进展，但它们仍可能犯错误，如计算错误或逻辑错误，导致得出错误结论。 此外，即使最终答案正确，这些强大的模型也经常编造看似合理的推理步骤，其中最终答案基于有缺陷的计算或推导过程，这削弱了LLMs推理过程的可靠性和可信度。 因此，自动识别推理过程中的错误对于其可扩展监督变得越来越重要。
+过程奖励模型（Process Reward Models, PRMs）作为数学推理过程监督中的一种有前途的方法出现，旨在识别和减轻推理过程中的中间错误。在评估方面，以往的研究主要依赖于响应级别的Best-of-N（BoN）评估，即根据PRM从N个候选答案中选择得分最高的响应。
+今天，我们开源了最先进的PRMs，它优于现有的开源PRM。我们还发布了步骤级别的评估标准 ProcessBench，用于测量模型识别数学推理中错误步骤的能力。
+ProcessBench 开源 ProcessBench旨在衡量模型识别数学推理中错误步骤的能力。 它由3,400个测试案例组成，主要集中在竞赛和奥林匹克级别的数学问题上。每个测试案例包含一个逐步解决方案，并由人类专家标注错误位置。 模型需要识别出第一个错误的步骤，或者得出所有步骤都正确的结论。 ProcessBench可以用于评估两种类型的模型：PRMs和批评模型，后者通过提示通用语言模型来逐步检查回答中的步骤。
+Process Reward Model 开源 我们发布了两个PRMs，即Qwen2.5-Math-PRM-7B和Qwen2.5-Math-PRM-72B，它们分别在Qwen2.5-Math-7B-Instruct和Qwen2.5-Math-72B-Instruct上进行微调得来。 我们训练的PRMs在BoN评估中表现出色，在ProcessBench上的错误步骤识别能力也更强。
+Best-of-N 评测 按照Qwen2.5-Math的方法，我们从多个数学基准测试中用Qwen2.5-Math-7B-Instruct采样了八个回答（即N=8），包括GSM8K、MATH、Minerva Math、GaoKao 2023 En、OlympiadBench、College Math和MMLU STEM。 每个候选回答的得分是该回答中每个步骤的分数乘积。 我们将八次采样中的多数投票结果（maj@8）作为基线，将pass@8（即在八次采样中有任意一个采样得出正确最终答案的测试样本比例）作为上限。
+如下表所示，Qwen2.5-Math-PRM-7B相比其他同等规模的PRMs表现出更优的性能。值得注意的是，它在所有7项任务中均优于maj@8，平均提高了1.4%。 此外，Qwen2.5-Math-PRM-72B的整体性能略优于Outcome Reward Model (ORM) Qwen2.5-Math-RM-72B，特别是在Minerva Math和MMLU STEM任务中表现显著。
+ProcessBench 我们还在ProcessBench上评估了我们的PRMs，以测量其识别错误步骤的能力。 与LLM-as-judge相比，Qwen2.5-Math-PRM-7B以较小规模在所有开源LLM中表现出色；对于闭源模型，Qwen2.5-Math-PRM-7B超越了GPT-4o-0806，但在性能上仍与o1-mini存在差距。 此外，与现有的PRMs相比，Qwen2.5-Math-PRM-7B和Qwen2.5-Math-PRM-72B都显示出显著的优势。 一个有趣的观察是，ORM Qwen2.5-Math-RM-72B在识别步骤错误方面也表现出不错的能力，甚至超过了某些开源PRMs。
+结论 ProcessBench展示了现有PRMs面临的挑战，并填补了PRMs步骤级别评估的空白。 除了开源PRMs以外，我们还在论文中通过广泛的实证研究识别了当前PRMs数据构建方法的局限性，并揭示了仅使用响应级别BoN评估PRMs的潜在偏差。 我们希望ProcessBench、我们开发PRM的最佳实践能够促进未来对推理过程监督的研究和开发。 更多细节请查看我们下面的论文。
+引用 如果你觉得我们的工作有用，欢迎引用！
+@article{processbench, title={{ProcessBench:} Identifying Process Errors in Mathematical Reasoning}, author={ Chujie Zheng and Zhenru Zhang and Beichen Zhang and Runji Lin and Keming Lu and Bowen Yu and Dayiheng Liu and Jingren Zhou and Junyang Lin }, journal={arXiv preprint arXiv:2412.</description>
+    </item>
+    
+    <item>
+      <title>QVQ: 更睿智地看世界</title>
+      <link>https://qwenlm.github.io/zh/blog/qvq-72b-preview/</link>
+      <pubDate>Wed, 25 Dec 2024 00:00:03 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qvq-72b-preview/</guid>
+      <description>GITHUB HUGGING FACE MODELSCOPE KAGGLE DEMO DISCORD
+在人类的思维中，语言和视觉紧密交织，塑造着我们感知和理解世界的方式。我们的推理能力深深植根于语言思维和视觉记忆之中。那么，当我们将这些能力赋予人工智能时，会发生什么呢？如今的大语言模型已经展现出卓越的推理能力，但我们不禁思考：它们能否通过掌握视觉理解的力量，攀登认知能力的新高峰？
+设想一下，一个人工智能能够像物理学大师一样，面对复杂的物理问题，沉着冷静地通过逻辑推理找到解决方案。正是这样的愿景激发我们创造了 QVQ —— 一个基于 Qwen2-VL-72B 构建的开源多模态推理模型。QVQ 在人工智能的视觉理解和复杂问题解决能力方面实现了重大突破。在 MMMU 评测中，QVQ 取得了 70.3 的优异成绩，并且在各项数学相关基准测试中相比 Qwen2-VL-72B-Instruct 都有显著提升。通过细致的逐步推理，QVQ 在视觉推理任务中展现出增强的能力，尤其在需要复杂分析思维的领域表现出色。
+局限性 QVQ-72B-Preview 是由 Qwen 团队开发的实验性研究模型，专注于增强视觉推理能力。尽管它的表现超出了预期，但仍有几个限制需要注意：
+语言混合与切换：模型可能会意外地混合语言或在语言之间切换，从而影响响应的清晰度。 递归推理：模型可能会陷入循环逻辑模式，产生冗长的响应而无法得出结论。 安全和伦理考虑：模型需要增强安全措施，以确保可靠和安全的性能，用户在部署时应保持谨慎。 性能和基准限制：尽管模型在视觉推理方面有所改善，但它无法完全替代 Qwen2-VL-72B 的能力。此外，在多步骤视觉推理过程中，模型可能会逐渐失去对图像内容的关注，导致幻觉。 模型表现 我们在 4 个数据集上评估 QVQ-72B-Preview，包括：
+MMMU：一个大学级别的多学科多模态评测集，旨在考察模型视觉相关的综合理解和推理能力。 MathVista：一个数学相关的视觉推理测试集，评估拼图测试图形的逻辑推理、函数图的代数推理和学术论文图形的科学推理等能力。 MathVision：一个高质量多模态数学推理测试集，来自于真实的数学竞赛，相比于MathVista具有更多的问题多样性和学科广度。 OlympiadBench：一个奥林匹克竞赛级别的双语多模态科学基准测试集，包含来自奥林匹克数学和物理竞赛的8,476个问题，包括中国高考。每个问题都附有专家级别的注释，详细说明了逐步推理的过程。 QVQ-72B-Preview 在 MMMU 基准测试中取得了 70.3 的分数，显著超越了 Qwen2-VL-72B-Instruct。此外，在剩下的三个专注于数学和科学问题的基准测试中，该模型表现出色，有效缩小了与领先的最先进的 o1 模型之间的差距。
+示例 以下，我们将展示几个示例，以说明该新模型在视觉推理任务中的应用。
+Example: MathNextUserGiven $h(x) = f(x) \cdot g(x)$, find $h&amp;rsquo;(2)$ using the table below: QVQ-72B-PreviewLet&amp;rsquo;s tackle this problem step by step.</description>
+    </item>
+    
+    <item>
+      <title>QwQ: 思忖未知之界</title>
+      <link>https://qwenlm.github.io/zh/blog/qwq-32b-preview/</link>
+      <pubDate>Thu, 28 Nov 2024 00:00:03 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwq-32b-preview/</guid>
+      <description>GITHUB HUGGING FACE MODELSCOPE DEMO DISCORD
+注意：QwQ 的发音为 /kwju:/ ，与单词 &amp;ldquo;quill&amp;rdquo; 的读音近似。
+思考、质疑、理解，是人类探索未知的永恒追求。在这条探索之路上，QwQ犹如一位怀抱无尽好奇的学徒，以思考和疑问照亮前路。QwQ体现了古老的哲学精神：它深知自己一无所知，而这种认知正是其好奇心的源泉。在探寻答案的过程中，它始终保持自省，以理性之光审视每一个假设，在不同的思维维度中穿行，追寻更深层的真理。
+然而，正如所有智慧的追求者一样，QwQ也有其局限性。这个版本只是漫长旅程中的一个初步阶段——它仍在学习如何行走于理性之路。它的思绪偶尔飘散，答案或许未尽完善，智慧仍在积淀。但这就是学习的美妙之处：既有能力又保持谦逊，既有知识又永远充满疑问。我们邀请您与QwQ一同探索，接纳它的洞见与不完美，共同踏上这无尽的理解之旅。
+模型局限性 QwQ-32B-Preview 是由 Qwen 团队开发的实验性研究模型，专注于增强 AI 推理能力。作为预览版本，它展现了令人期待的分析能力，同时也存在以下局限：
+语言切换问题：模型可能在回答中混合使用不同语言，影响表达的连贯性。
+推理循环：在处理复杂逻辑问题时，模型偶尔会陷入递归推理模式，在相似思路中循环。这种行为虽然反映了模型试图全面分析的努力，但可能导致冗长而不够聚焦的回答。
+安全性考虑：尽管模型已具备基础安全管控，但仍需要进一步增强。它可能产生不恰当或存在偏见的回答，且与其他大型语言模型一样，可能受到对抗攻击的影响。我们强烈建议用户在生产环境中谨慎使用，并采取适当的安全防护措施。
+能力差异：QwQ-32B-Preview 在数学和编程领域表现出色，但在其他领域仍有提升空间。模型性能会随任务的复杂度和专业程度而波动。我们正通过持续优化，努力提升模型的综合能力。
+模型表现 通过深入的探索和无数的试验，我们发现了一个深刻的道理：当模型有足够的时间思考、质疑和反思时，它对数学和编程的理解就会深化。就像学生通过认真地检查自己的工作并从错误中学习变得更加聪明一样，我们的模型也通过耐心和深思熟虑的分析获得了更深入的见解。这种细致的反思和自我质疑的过程使得模型能够取得解决复杂问题的突破性进展。我们的探索之旅揭示了模型在数学和编程领域解决一些最具挑战性的问题的卓越能力，包括：
+GPQA：一个通过研究生级别问题评估高阶科学解题能力的评测集，旨在考察科学问题解决能力。 AIME：涵盖算术、代数、计数、几何、数论、概率等中学数学主题的综合评测，测试数学问题解决能力。 MATH-500：包含500个测试样本的MATH评测集，全面考察数学解题能力。 LiveCodeBench：评估真实编程场景中代码生成和问题解决能力的高难度评测集。 具体表现如下：
+GPQA：65.2%，展示了研究生水平的科学推理能力； AIME：50.0%，证明了强大的数学问题解决技能； MATH-500：90.6%，体现了在各类数学主题上的全面理解； LiveCodeBench：50.0%，验证了在实际编程场景中的出色表现。 这些成果充分体现了QwQ在分析和问题解决能力方面的显著进步，尤其是在需要深度推理的技术领域。
+样例 下列样例展示了QwQ深度自省的能力——质疑自身假设、进行深思熟虑的自我对话，并仔细审视其推理过程的每一步。
+Example: Logical ReasoningNextUserS先生、P先生、Q先生他们知道桌子的抽屉里有16张扑克牌：红桃A、Q、4 黑桃J、8、4、2、7、3 草花K、Q、5、4、6 方块A、5。约翰教授从这16张牌中挑出一张牌来，并把这张牌的点数告诉 P先生，把这张牌的花色告诉Q先生。这时，约翰教授问P先生和Q 先生：你们能从已知的点数或花色中推知这张牌是什么牌吗？于是，S先生听到如下的对话：
+P先生：我不知道这张牌。
+Q先生：我知道你不知道这张牌。
+P先生：现在我知道这张牌了。
+Q先生：我也知道了。
+请问：这张牌是什么牌？
+QwQ-32B-Preview这道题是逻辑推理题，涉及到信息的逐步披露和推理。题目中有一副16张扑克牌，分别是：
+红桃：A、Q、4
+黑桃：J、8、4、2、7、3
+草花：K、Q、5、4、6
+方块：A、5
+约翰教授选了一张牌，把点数告诉了P先生，把花色告诉了Q先生。然后通过他们的对话，我们要推断出是哪张牌。
+首先，让我们来梳理一下对话的内容：
+P先生说：“我不知道这张牌。”
+这意味着点数是重复的，因为如果点数唯一，P先生就能确定是哪张牌。例如，如果点数是K，只有草花K，那P先生就能确定是草花K。但P先生说不知道，所以点数必须在多个花色中出现。看看哪些点数是重复的：
+A：红桃和方块
+Q：红桃和草花
+4：红桃、黑桃和草花
+5：草花和方块</description>
+    </item>
+    
+    <item>
+      <title>将上下文长度扩展至百万 Tokens ！</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen2.5-turbo/</link>
+      <pubDate>Fri, 15 Nov 2024 00:00:03 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen2.5-turbo/</guid>
+      <description>API文档 HuggingFace Demo ModelScope Demo
+简介 在 Qwen2.5 发布之后，我们听到社区对处理更长序列的需求。在这段时间，我们针对长序列处理能力以及长序列下的推理效率进行了很多优化。今天，我们隆重推出新的 Qwen2.5-Turbo 版本，其特点在于：
+更长的上下文支持: 我们首次将模型的上下文长度从 128k 扩展到 1M，该长度约为 100 万个英文单词或 150 万个汉字，相当于 10 本长篇小说，150 小时的演讲稿，3 万行代码。该模型能在 1M 长度的大海捞针 (Passkey Retrieval) 任务中实现 100% 的准确率，在长文本评测集 RULER 上获得 93.1 分，超越 GPT-4 的 91.6 分，GLM4-9B-1M 的 89.9 分。此外，在短序列能力上，该模型仍然保持了非常强的竞争力，与 GPT-4o-mini 持平。 更快的推理速度: 利用稀疏注意力机制，我们成功将处理 1M tokens 上下文时的首字返回时间从 4.9 分钟降低到68秒，实现 4.3 倍加速比。 更低的价格：价格仍为 0.3元 / 1M tokens。在相同成本下，Qwen2.5-Turbo 相比 GPT-4o-mini 能够处理 3.6 倍的 Token。 现在，你可以通过阿里云大模型服务平台的 API 服务，或者通过 HuggingFace Demo 或者 ModelScope Demo 进行体验。</description>
+    </item>
+    
+    <item>
+      <title>Qwen2.5-Coder 全系列: 强大、多样、实用。</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen2.5-coder-family/</link>
+      <pubDate>Tue, 12 Nov 2024 00:00:02 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen2.5-coder-family/</guid>
+      <description>GITHUB HUGGING FACE MODELSCOPE KAGGLE DEMO DISCORD
+简介 今天，我们很高兴开源「强大」、「多样」、「实用」的 Qwen2.5-Coder 全系列模型，致力于持续推动 Open CodeLLMs 的发展。
+强大：Qwen2.5-Coder-32B-Instruct 成为目前 SOTA 的开源代码模型，代码能力追平 GPT-4o，展现出强大且全面的代码能力，同时具备良好的通用和数学能力。 多样：上个月我们开源了 1.5B、7B 两个尺寸，本次开源又带来 0.5B、3B、14B、32B 四个尺寸，截至目前， Qwen2.5-Coder 已经覆盖了主流的六个模型尺寸，以满足不同开发者的需要。 实用：我们探索了 Qwen2.5-Coder 在代码助手和 Artifacts 两种场景下的实用性，并用一些样例来展示 Qwen2.5-Coder 在实际场景中的应用潜力。 强大：代码能力达到开源模型 SOTA 代码生成：Qwen2.5-Coder-32B-Instruct 作为本次开源的旗舰模型，在多个流行的代码生成基准（如EvalPlus、LiveCodeBench、BigCodeBench）上都取得了开源模型中的最佳表现，并且达到和 GPT-4o 有竞争力的表现。
+代码修复：代码修复是一个重要的编程能力。Qwen2.5-Coder-32B-Instruct 可以帮助用户修复代码中的错误，让编程更加高效。Aider 是流行的代码修复的基准，Qwen2.5-Coder-32B-Instruct 达到 73.7 分，在 Aider 上的表现与 GPT-4o 相当。
+代码推理：代码推理是指模型能否学习代码执行的过程，准确地预测模型的输入与输出。上个月发布的 Qwen2.5-Coder-7B-Instruct 已经在代码推理能力上展现出了不俗的表现，32B 模型的表现更进一步。 多编程语言：智能编程助手应该熟悉所有编程语言，Qwen2.5-Coder-32B-Instruct 在 40 多种编程语言上表现出色，在 McEval 上取得了 65.9 分，其中 Haskell、Racket 等语言表现令人印象深刻，这得益于我们在预训练阶段独特的数据清洗和配比。 另外，Qwen2.5-Coder-32B-Instruct 的多编程语言代码修复能力同样令人惊喜，这将有助于用户理解和修改自己熟悉的编程语言，极大缓解陌生语言的学习成本。
+与 McEval 类似，MdEval 是多编程语言的代码修复基准，Qwen2.5-Coder-32B-Instruct 在 MdEval 上取得了 75.</description>
+    </item>
+    
+    <item>
+      <title>Qwen2.5: 基础模型大派对！</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen2.5/</link>
+      <pubDate>Thu, 19 Sep 2024 00:00:04 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen2.5/</guid>
+      <description>GITHUB HUGGING FACE MODELSCOPE DEMO DISCORD
+简介 在 Qwen2 发布后的过去三个月里，许多开发者基于 Qwen2 语言模型构建了新的模型，并为我们提供了宝贵的反馈。在这段时间里，我们专注于创建更智能、更博学的语言模型。今天，我们很高兴地向大家介绍 Qwen 家族的最新成员：Qwen2.5。
+我们将要宣布的可能是历史上最大的开源发布！让我们开始这场盛会吧！
+我们的最新发布包括了语言模型 Qwen2.5，以及专门针对编程的 Qwen2.5-Coder 和数学的 Qwen2.5-Math 模型。所有开放权重的模型都是稠密的、decoder-only的语言模型，提供多种不同规模的版本，包括：
+Qwen2.5: 0.5B, 1.5B, 3B, 7B, 14B, 32B, 以及72B; Qwen2.5-Coder: 1.5B, 7B, 以及即将推出的32B; Qwen2.5-Math: 1.5B, 7B, 以及72B。 除了3B和72B的版本外，我们所有的开源模型都采用了 Apache 2.0 许可证。您可以在相应的 Hugging Face 仓库中找到许可证文件。除此之外，我们还通过 Model Studio 提供了旗舰语言模型 Qwen-Plus 和 Qwen-Turbo 的 API，诚邀您来体验和使用！此外，我们还开源了相比上个月发布的版本有性能提升的 Qwen2-VL-72B。
+如需了解更多关于 Qwen2.5、Qwen2.5-Coder 和 Qwen2.5-Math 的详细信息，请随时访问以下链接：
+Qwen2.5 LLM Qwen2.5-Coder Qwen2.5-Math
+准备好迎接我们全面的模型系列所带来的无限可能吧！我们非常高兴能够与您分享这些前沿模型，并期待看到您使用它们所取得的非凡成就！
+要点总结 就 Qwen2.5 语言模型而言，所有模型都在我们最新的大规模数据集上进行了预训练，该数据集包含多达 18T tokens。相较于 Qwen2，Qwen2.</description>
+    </item>
+    
+    <item>
+      <title>Qwen2.5-LLM：扩展大型语言模型的边界</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen2.5-llm/</link>
+      <pubDate>Thu, 19 Sep 2024 00:00:03 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen2.5-llm/</guid>
+      <description>GITHUB HUGGING FACE MODELSCOPE DEMO DISCORD
+简介 我们隆重推出最新发布的Qwen2.5系列语言模型！我们共开源了7款decoder-only的稠密模型，参数规模从0.5B到72B不等。我们调研发现产品对10B至30B模型的兴趣明显增加，同时3B规模的模型也越来越适用于移动端场景。为此，Qwen2.5系列开源了Qwen2.5-3B、Qwen2.5-14B 和 Qwen2.5-32B。同时，我们还推出了Qwen-Plus与Qwen-Turbo版本，可以通过阿里云大模型服务平台的API服务进行体验。
+相比Qwen2系列，Qwen2.5带来了以下全新升级：
+全面开源：考虑到用户对10B至30B范围模型的需求和移动端对3B模型的兴趣，此次除了继续开源Qwen2系列中的0.5B/1.5B/7B/72B四款模型外，Qwen2.5系列还增加了两个高性价比的中等规模模型—— Qwen2.5-14B 和 Qwen2.5-32B，以及一款适合移动端的 Qwen2.5-3B。所有模型在同类开源产品中均具有很强的竞争力，例如Qwen2.5-32B的整体表现超越了Qwen2-72B，Qwen2.5-14B则领先于Qwen2-57B-A14B。
+更大规模、更高质量的预数据训练集：我们的预训练数据集规模从 7T tokens 扩展到了 18T tokens。
+知识储备升级：Qwen2.5的知识涵盖更广。在MMLU基准中，Qwen2.5-7B 和 72B的得分相较于Qwen2分别从70.3提升到 74.2，和从84.2提升到 86.1。此外，Qwen2.5还在 GPQA、MMLU-Pro、MMLU-redux 和 ARC-c 等多个基准测试中有了明显提升。
+代码能力增强：得益于Qwen2.5-Coder的突破，Qwen2.5在代码生成能力上也大幅提升。Qwen2.5-72B-Instruct在LiveCodeBench（2305-2409）、MultiPL-E和MBPP中的分别得分 55.5、75.1 和 88.2，优于Qwen2-72B-Instruct的32.2、69.2和80.2。
+数学能力提升：引入了Qwen2-math的技术后，Qwen2.5的数学推理表现也有了快速提升。在MATH基准测试中，Qwen2.5-7B/72B-Instruct得分从Qwen2-7B/72B-Instruct的52.9/69.0上升到了 75.5/83.1。
+更符合人类偏好：Qwen2.5生成的内容更加贴近人类的偏好。具体来看，Qwen2.5-72B-Instruct的Arena-Hard得分从 48.1 大幅提升至 81.2，MT-Bench得分也从 9.12 提升到了 9.35，与之前的Qwen2-72B相比提升显著。
+其他核心能力提升：Qwen2.5在 指令跟随、生成 长文本（从1K升级到 8K tokens）、理解 结构化数据（如表格），以及生成 结构化输出（尤其是JSON）上都有非常明显的进步。此外，Qwen2.5能够更好响应多样化的 系统提示，用户可以给模型设置 特定角色 或 自定义条件。
+模型基础信息 本次发布的 Qwen2.5 语言模型系列包括七个开源模型，规模从 0.5B 到 72B 不等。大多数模型支持 128K（131,072）个 token 的上下文长度，并能生成 8K token 的文本，支持长篇内容创作。除部分特殊版本外，模型主要采用 Apache 2.</description>
+    </item>
+    
+    <item>
+      <title>Qwen2.5-Coder: 码无止境，学无止境!</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen2.5-coder/</link>
+      <pubDate>Thu, 19 Sep 2024 00:00:02 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen2.5-coder/</guid>
+      <description>GITHUB HUGGING FACE MODELSCOPE DEMO DISCORD
+简介 四月初，我们发布了 CodeQwen1.5, 得到了社区广泛的关注与喜爱。自那以后，我们一直在继续努力提升代码模型。今天，我们很高兴地宣布新一代的开放代码模型 Qwen2.5-Coder 的发布。并正式将 CodeQwen 的命名改为 Qwen-Coder，我们认为 Coder 更加拟人、灵动，期待其可以在未来真正与人类结对编程。Qwen2.5-Coder 是我们 Qwen2.5 开源家族的一员，共包括三个尺寸的模型：1.5B、 7B 和 32B（在路上）。
+本次更新的两大核心包括代码训练数据的进一步 scaling，以及探索在提升代码能力的同时保持数学和通用能力。
+码无止境：Qwen2.5-Coder 基于强大的 Qwen2.5 初始化，扩增了更大规模的代码训练数据持续训练，包括源代码、文本代码混合数据、合成数据等共计 5.5T tokens。使得 Qwen2.5-Coder 在代码生成、代码推理、代码修复等任务上都有了显著提升。 学无止境：我们希望 Qwen2.5-Coder 在提升代码能力的同时，也能保持在数学、通用能力等方面的优势。因此，我们在 Qwen2.5-Coder 中加入了更多的数学、通用能力数据，为未来的真实应用提供更为全面的基座。 Qwen2.5-Coder: Base Models Qwen2.5-Coder 最多 128K tokens 上下文，支持 92 种编程语言，并在多个代码相关的评估任务中都取得了显著的提升，包括代码生成、多编程语言代码生成、代码补全、代码修复等。值得注意的是，本次开源的 7B 版本 Qwen2.5-Coder，甚至打败了更大尺寸的 DeepSeek-Coder-V2-Lite 和 CodeStral-22B，成为当前最强大的基础代码模型之一。除了代码任务外，Qwen2.5-Coder 也具备极具竞争力的数学能力。面向通用任务，我们评估了 MMLU 和 ARC，结果表明 Qwen2.5-Coder 很好的保持了 Qwen2.5 的通用能力。
+Qwen2.5-Coder-Instruct: Instruction-Tuned Models 我们在 Qwen2.5-Coder 的基础上，通过指令微调，得到了 Qwen2.5-Coder-Instruct。Qwen2.5-Coder-Instruct 除了进一步提升了多个任务上的性能外，还在更多的评估中体现出了卓越的泛化性。</description>
+    </item>
+    
+    <item>
+      <title>Qwen2.5-Math: 世界领先的数学开源大语言模型</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen2.5-math/</link>
+      <pubDate>Thu, 19 Sep 2024 00:00:01 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen2.5-math/</guid>
+      <description>GITHUB HUGGING FACE MODELSCOPE DISCORD
+🚨 Qwen2.5-Math主要被设计用于通过CoT或TIR的方式解中英数学题，我们不推荐在其他任务上使用该系列模型。 简介 一个月前，我们开源了 Qwen 家族的第一款数学专项大语言模型- Qwen2-Math。 今天，我们将它再度升级并开源 Qwen2.5-Math 系列，包括基础模型 Qwen2.5-Math-1.5B/7B/72B，指令微调模型Qwen2.5-Math-1.5B/7B/72B-Instruct和数学奖励模型 Qwen2.5-Math-RM-72B。
+相较于 Qwen2-Math 只支持使用思维链（CoT）解答英文数学题目，Qwen2.5 系列扩展为同时支持使用思维链和工具集成推理（TIR） 解决中英双语的数学题。Qwen2.5-Math系列相比上一代Qwen2.5-Math在中文和英文的数学解题能力上均实现了显著提升。
+虽然 CoT 在增强 LLM 的推理能力方面发挥着重要作用，但它在实现计算精度和处理复杂的数学或算法推理任务方面依然面临挑战，例如寻找二次方程的根或计算矩阵的特征值等等。而 TIR（如使用python解释器）可以进一步提高模型在精确计算、符号操作和算法操作方面的能力。Qwen2.5-Math-1.5B/7B/72B-Instruct 使用 TIR 在 MATH 基准测试中分别达到 79.7、85.3 和 87.8的高分。
+Qwen2.5-Math: 基础模型 Qwen2-Math 和 Qwen2.5-Math 的整体训练流程如上图所示。在训练完 Qwen2-Math 基础模型后，我们通过三个主要途径将其进一步升级为 Qwen2.5-Math 模型：
+1）利用 Qwen2-Math-72B-Instruct 模型合成更多高质量的数学预训练数据。
+2）通过多轮召回从网络资源、书籍和代码中获取更多高质量的数学数据，尤其是中文数学数据。
+3）利用 Qwen2.5 系列基础模型进行参数初始化，它们相比Qwen2有更强大的语言理解、代码生成和文本推理能力。
+最终，我们为 Qwen2.5-Math-1.5B/7B/72B 构建了名为 Qwen Math Corpus v2 的预训练数据集，并保持上下文长度为4K。与用于 Qwen2-Math 预训练的 Qwen Math Corpus v1 相比，Qwen Math Corpus v2 的总 token 数量从 700B 增加到超过 1T。</description>
+    </item>
+    
+    <item>
+      <title>Qwen2-VL: 更清晰地看世界</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen2-vl/</link>
+      <pubDate>Thu, 29 Aug 2024 00:24:00 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen2-vl/</guid>
+      <description>DEMO GITHUB HUGGING FACE MODELSCOPE API DISCORD
+经历了接近一年时间的持续努力，今天我们很高兴地宣布我们最新一代的视觉语言模型：Qwen2-VL ！Qwen2-VL 基于 Qwen2 打造，相比 Qwen-VL，它具有以下特点：
+读懂不同分辨率和不同长宽比的图片：Qwen2-VL 在 MathVista、DocVQA、RealWorldQA、MTVQA 等视觉理解基准测试中取得了全球领先的表现。
+理解20分钟以上的长视频：Qwen2-VL 可理解长视频，并将其用于基于视频的问答、对话和内容创作等应用中。
+能够操作手机和机器人的视觉智能体：借助复杂推理和决策的能力，Qwen2-VL 可集成到手机、机器人等设备，根据视觉环境和文字指令进行自动操作。
+多语言支持：为了服务全球用户，除英语和中文外，Qwen2-VL 现在还支持理解图像中的多语言文本，包括大多数欧洲语言、日语、韩语、阿拉伯语、越南语等。 我们以 Apache 2.0 协议开源了 Qwen2-VL-2B 和 Qwen2-VL-7B，并发布了 Qwen2-VL-72B 的 API！开源代码已集成到 Hugging Face Transformers、vLLM 和其他第三方框架中。希望能为您提供便捷的开发体验！
+模型性能 我们从六个方面来评估我们模型的视觉能力，包括综合的大学题目、数学能力、文档表格多语言文字图像的理解、通用场景下的问答、视频理解、Agent 能力。整体来看，我们 72B 规模的模型在大部分的指标上都达到了最优，甚至超过了 GPT-4o 和 Claude3.5-Sonnet 等闭源模型，特别是在文档理解方面优势明显，仅在对综合的大学题目上和 GPT-4o 还有差距。同时 Qwen2-VL 72B 也刷新了开源多模态模型的最好表现。 在 7B 规模上，我们同样支持图像、多图、视频的输入，在更经济的规模上也实现了有竞争力的性能表现，特别是像 DocVQA 之类的文档理解能力和 MTVQA 考察的图片中多语言文字理解能力都处于 SOTA 水平。 除此之外，我们还提供了一个更小的 2B 规模的模型，以此支持移动端的丰富应用。它具备完整图像视频多语言的理解能力，性能强劲，特别在视频文档和通用场景问答相较同规模模型优势明显。 模型能力案例 1. 更细节的识别理解 Qwen2-VL 不仅能识别植物和地标，而且能理解场景中多个对象间的关系。我们还特别增强了对手写文字及图像中多种语言的识别能力，令其在全球范围内更加易用。
+Example: Multi-object RecognitionNextUserOutput the color and number of each box.</description>
+    </item>
+    
+    <item>
+      <title>Qwen2-Audio：开启语音对话！</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen2-audio/</link>
+      <pubDate>Fri, 09 Aug 2024 16:22:39 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen2-audio/</guid>
+      <description>DEMO PAPER GITHUB HUGGING FACE MODELSCOPE DISCORD
+在一个通用的AI系统中，核心模型应该能够理解不同模态的信息。当前的大语言模型现在已经能够理解语言并进行推理，并且已经扩展到了更多的模态，包括视觉和音频。此前我们陆续发布了多个 Qwen 语言模型系列以及 Qwen-VL 和 Qwen-Audio 等多模态模型。今天，我们正式发布 Qwen2-Audio。这是 Qwen-Audio 的下一代版本，它能够接受音频和文本输入，并生成文本输出。Qwen2-Audio 具有以下特点：
+语音聊天：用户可以使用语音向音频语言模型发出指令，无需通过自动语音识别（ASR）模块。
+音频分析：该模型能够根据文本指令分析音频信息，包括语音、声音、音乐等。
+多语言支持：该模型支持超过8种语言和方言，例如中文、英语、粤语、法语、意大利语、西班牙语、德语和日语。
+我们在 Hugging Face 和 ModelScope 上开源了 Qwen2-Audio-7B 以及 Qwen2-Audio-7B-Instruct，并且我们搭建了一个 demo 供用户互动。下面是一些具体例子：
+语音交互 语音交互：基础交互NextUserYour browser does not support the audio element. Qwen2-Audio这种情况可能会让人感到沮丧和困惑，但是你需要记住的是，你不能强迫任何人去喜欢你。如果你真的喜欢这个女孩，那么最好的办法就是尊重她的感受，不去打扰她，同时也要保持自己的尊严。 以下是一些建议： &amp;nbsp 1. 尊重她的决定：如果她明确表示不喜欢你，那么你应该尊重她的决定，不要试图改变她的想法。 2. 不要过于干涉：避免过多地干涉她的生活，也不要试图通过各种方式来接近她。 3. 保持距离：尽量避免与她有太多的接触，尤其是在她不希望的情况下。 4. 寻求支持：如果你感到很难过或者困惑，可以向你的朋友或家人寻求支持和建议。 &amp;nbsp 最重要的是，你要保持自己的尊严和自信，不要因为别人的喜好而失去自我。 Your browser does not support the audio element. UserYour browser does not support the audio element.</description>
+    </item>
+    
+    <item>
+      <title>Qwen2-Math，新一代数学模型</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen2-math/</link>
+      <pubDate>Thu, 08 Aug 2024 00:00:00 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen2-math/</guid>
+      <description>GITHUB HUGGING FACE MODELSCOPE DISCORD
+🚨 此模型目前主要支持英语。我们将尽快推出中英双语版本。 简介 在过去的一年里，我们非常关注大模型的推理能力的提升，尤其关注其在数学相关的任务上的表现。今天，我们非常高兴地介绍 Qwen2 开源家族的新成员——Qwen2-Math-1.5B/7B/72B 系列。Qwen2-Math 是一系列基于 Qwen2 LLM 构建的专门用于数学解题的语言模型，其数学能力显著超越了开源模型，甚至超过了闭源模型（如 GPT-4o）。我们希望Qwen2-Math能够为科学界解决需要复杂多步逻辑推理的高级数学问题做出贡献。
+我们在一系列数学基准评测上评估了我们的数学专用模型 Qwen2-Math。在 Math 上的评测结果表明，我们最大的数学专用模型 Qwen2-Math-72B-Instruct 超越了最先进的模型，包括 GPT-4o、Claude-3.5-Sonnet、Gemini-1.5-Pro 和 Llama-3.1-405B。
+Qwen2-Math基础模型 Qwen2-Math 的基础模型使用 Qwen2-1.5B/7B/72B 进行初始化，然后在精心设计的数学专用语料库上进行预训练，该语料库包含大规模高质量的数学网络文本、书籍、代码、考试题目以及由 Qwen2 模型合成的数学预训练数据。
+我们在三个广泛使用的英语数学基准 GSM8K、Math 和 MMLU-STEM 上评估了我们的 Qwen2-Math 基模型。此外，我们还评估了三个中国数学基准 CMATH，GaoKao Math Cloze 和 GaoKao Math QA。所有评估均使用 Few-shot CoT 方式。
+Qwen2-Math指令微调模型 我们首先基于 Qwen2-Math-72B 训练了一个数学专用的奖励模型。然后，我们将这个密集的奖励信号与一个二元信号结合，该二元信号指示模型是否正确回答了问题。这个组合信号被用作监督来通过拒绝采样构建 SFT 数据，并在此SFT模型的基础上进一步使用 GRPO 来优化模型。
+我们对 Qwen2-Math-Instruct 在英语和中文的数学基准评测上进行了评估。除了常用的基准评测，如 GSM8K 和 MATH 之外，我们还加入了更具挑战性的考试以全面检测 Qwen2-Math-Instruct 的能力，例如 OlympiadBench、CollegeMath、高考（GaoKao）、AIME2024 以及 AMC2023。对于中文的数学评测集，我们使用了 CMATH、2024年中国高考数学题以及2024年中国中考数学题。</description>
+    </item>
+    
+    <item>
+      <title>你好，Qwen2</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen2/</link>
+      <pubDate>Fri, 07 Jun 2024 00:00:00 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen2/</guid>
+      <description>GITHUB HUGGING FACE MODELSCOPE DEMO DISCORD
+简介 历经数月努力, 我们很高兴迎来了Qwen系列模型从Qwen1.5到Qwen2的重大升级。这一次，我们为大家带来了：
+5个尺寸的预训练和指令微调模型, 包括Qwen2-0.5B、Qwen2-1.5B、Qwen2-7B、Qwen2-57B-A14B以及Qwen2-72B； 在中文英语的基础上，训练数据中增加了27种语言相关的高质量数据； 多个评测基准上的领先表现； 代码和数学能力显著提升； 增大了上下文长度支持，最高达到128K tokens（Qwen2-72B-Instruct）。 目前，我们已在Hugging Face和ModelScope上同步开源。期待听到你们的使用反馈！
+模型基础信息 Qwen2系列包含5个尺寸的预训练和指令微调模型，其中包括Qwen2-0.5B、Qwen2-1.5B、Qwen2-7B、Qwen2-57B-A14B和Qwen2-72B。如下表所示:
+模型 Qwen2-0.5B Qwen2-1.5B Qwen2-7B Qwen2-57B-A14B Qwen2-72B 参数量 0.49B 1.54B 7.07B 57.41B 72.71B 非Embedding参数量 0.35B 1.31B 5.98B 56.32B 70.21B GQA True True True True True Tie Embedding True True False False False 上下文长度 32K 32K 128K 64K 128K 在Qwen1.5系列中，只有32B和110B的模型使用了GQA。这一次，所有尺寸的模型都使用了GQA，以便让大家体验到GQA带来的推理加速和显存占用降低的优势。针对小模型，由于embedding参数量较大，我们使用了tie embedding的方法让输入和输出层共享参数，增加非embedding参数的占比。
+上下文长度方面，所有的预训练模型均在32K tokens的数据上进行训练，并且我们发现其在128K tokens时依然能在PPL评测中取得不错的表现。然而，对指令微调模型而言，除PPL评测之外还需要进行大海捞针等长序列理解实验。在该表中，我们根据大海捞针实测结果，列出了各个指令微调模型所支持的最大上下文长度。而在使用YARN这类方法时，Qwen2-7B-Instruct和Qwen2-72B-Instruct均实现了长达128K tokens上下文长度的支持。
+我们投入了大量精力研究如何扩展多语言预训练和指令微调数据的规模并提升其质量，从而提升模型的多语言能力。尽管大语言模型本身具有一定的泛化性，我们还是针对性地对除中英文以外的27种语言进行了增强：
+地区 语言 西欧 德语、法语、西班牙语、葡萄牙语、 意大利语、荷兰语 东欧及中欧 俄语、捷克语、波兰语 中东 阿拉伯语、波斯语、希伯来语、土耳其语 东亚 日语、韩语 东南亚 越南语、泰语、印尼语、马来语、老挝语、缅甸语、宿务语、高棉语、菲律宾语 南亚 印地语、孟加拉语、乌尔都语 此外，我们针对性地优化了多语言场景中常见的语言转换（code switch）问题，模型当前发生语言转换的概率大幅度降低。我们使用容易触发语言转换现象的提示词进行测试，观察到Qwen2系列模型在此方面能力的显著提升。</description>
+    </item>
+    
+    <item>
+      <title>使用Qwen-Agent将上下文记忆扩展到百万量级</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen-agent-2405/</link>
+      <pubDate>Thu, 06 Jun 2024 11:59:59 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen-agent-2405/</guid>
+      <description>我们开发了一个智能体用于理解包含百万字词的文档，虽然仅使用Qwen2模型的8k上下文，但效果超过RAG和长序列原生模型。我们还利用此智能体合成长上下文数据，用于训练长上下文的Qwen模型。</description>
+    </item>
+    
+    <item>
+      <title>Qwen-Max-0428模型介绍</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen-max-0428/</link>
+      <pubDate>Sat, 11 May 2024 18:10:00 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen-max-0428/</guid>
+      <description>API DEMO DISCORD
+此前，我们开源了Qwen1.5系列的模型，参数规模最小至5亿，最大至1100亿。这一次，我们推出更大规模模型Qwen-Max-0428（通义千问网页端及APP产品版本从2.1升级至2.5）。Qwen-Max-0428是经过指令微调的Chat模型。近期该模型登陆了Chatbot Arena，并登榜前十。此外，我们在MT-Bench的评测上也观察到该模型的表现显著优于Qwen1.5-110B-Chat。
+Models MT-Bench Arena Qwen1.5-110B-Chat 8.88 1172 Qwen-Max-0428 8.96 1186 我们也在Hugging Face上提供了Demo服务（链接）：
+同时我们也提供了DashScope API服务（链接）。目前API服务已经支持OpenAI API格式，示例如下所示：
+from openai import OpenAI client = OpenAI( api_key=&amp;#34;$your-dashscope-api-key&amp;#34;, base_url=&amp;#34;https://dashscope.aliyuncs.com/compatible-mode/v1&amp;#34; ) completion = client.chat.completions.create( model=&amp;#34;qwen-max&amp;#34;, messages=[{&amp;#39;role&amp;#39;: &amp;#39;system&amp;#39;, &amp;#39;content&amp;#39;: &amp;#39;You are a helpful assistant.&amp;#39;}, {&amp;#39;role&amp;#39;: &amp;#39;user&amp;#39;, &amp;#39;content&amp;#39;: &amp;#39;Tell me something about large language models.&amp;#39;}] ) print(completion.choices[0].message) 此外，Qwen-Max-0428已上线通义千问网页端及APP。欢迎体验！
+引用 @misc{qwen1.5, title = {Introducing Qwen1.5}, url = {https://qwenlm.github.io/blog/qwen1.5/}, author = {Qwen Team}, month = {February}, year = {2024} } </description>
+    </item>
+    
+    <item>
+      <title>Qwen1.5-110B：Qwen1.5系列的首个千亿参数开源模型</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen1.5-110b/</link>
+      <pubDate>Thu, 25 Apr 2024 13:33:00 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen1.5-110b/</guid>
+      <description>GITHUB HUGGING FACE MODELSCOPE DEMO DISCORD
+简介 近期开源社区陆续出现了千亿参数规模以上的大模型，这些模型都在各项评测中取得杰出的成绩。今天，我们开源1100亿参数的Qwen1.5系列首个千亿参数模型Qwen1.5-110B，该模型在基础能力评估中与Meta-Llama3-70B相媲美，在Chat评估中表现出色，包括MT-Bench和AlpacaEval 2.0。
+模型特性 Qwen1.5-110B与其他Qwen1.5模型相似，采用了相同的Transformer解码器架构。它包含了分组查询注意力（GQA），在模型推理时更加高效。该模型支持32K tokens的上下文长度，同时它仍然是多语言的，支持英、中、法、西、德、俄、日、韩、越、阿等多种语言。
+模型效果 我们对基础语言模型进行了一系列评估，并与最近的SOTA语言模型Meta-Llama3-70B以及Mixtral-8x22B进行了比较。
+Qwen1.5-110B Qwen1.5-72B Llama-3-70B Mixtral-8x22B MMLU 80.4 77.5 79.5 77.8 TheoremQA 34.9 29.3 32.0 35.9 GPQA 35.9 36.3 36.4 34.3 Hellaswag 87.5 86.0 88.0 88.7 BBH 74.8 65.5 76.6 69.2 ARC-C 69.6 65.9 68.8 70.7 GSM8K 85.4 79.5 79.2 78.6 MATH 49.6 34.1 41.0 41.7 HumanEval 52.4 41.5 45.7 45.1 MBPP 58.1 53.4 55.1 71.2 上述结果显示，新的110B模型在基础能力方面至少与Llama-3-70B模型相媲美。在这个模型中，我们没有对预训练的方法进行大幅改变，因此我们认为与72B相比的性能提升主要来自于增加模型规模。
+我们还在MT-Bench和AlpacaEval 2.</description>
+    </item>
+    
+    <item>
+      <title>与 CodeQwen1.5 结对编程</title>
+      <link>https://qwenlm.github.io/zh/blog/codeqwen1.5/</link>
+      <pubDate>Tue, 16 Apr 2024 13:33:00 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/codeqwen1.5/</guid>
+      <description>GITHUB HUGGING FACE MODELSCOPE DEMO DISCORD
+简介 代码助手，是一种基于 LLMs 的智能化的编程工具，它可以帮助程序员更高效、更准确的编写代码，使得整个软件开发过程更加流畅和高效。然而流行的代码助手，比如 Github Copilot，依赖于闭源的商业模型，不仅昂贵还会引起如隐私、安全、版权等方面的担忧。幸运的是，开源社区正在致力于打造开放代码模型来实现开放的代码助手。近期涌现出了一批优秀的 Open CodeLLMs，比如 StarCoder2、CodeLlama、DeepSeek-Coder 等，提供了一条新的路径，但仍然值得探索。
+今天，我们非常激动地和大家介绍来自 Qwen1.5 开源家族的新成员，一个代码专家模型 CodeQwen1.5! CodeQwen1.5 基于 Qwen 语言模型初始化，拥有 7B 参数的模型，其拥有 GQA 架构，经过了 ~3T tokens 代码相关的数据进行预训练，共计支持 92 种编程语言、且最长支持 64K 的上下文输入。效果方面，CodeQwen1.5 展现出了非凡的代码生成、长序列建模、代码修改、SQL 能力等,该模型可以大大提高开发人员的工作效率，并在不同的技术环境中简化软件开发工作流程。
+CodeQwen 是基础的 Coder 代码生成是大语言模型的关键能力之一，期待模型将自然语言指令转换为具有精确的、可执行的代码。仅拥有 70 亿参数的 CodeQwen1.5 在基础代码生成能力上已经超过了更尺寸的模型，进一步缩小了开源代码 LLM 和 GPT-4 之间的编码能力差距。我们对 HumanEval 和 MBPP 进行了评估，下面是具体的比较。
+Model Size HumanEval 0-shot HumanEval+ 0-shot MBPP 0-shot MBPP+ 0-shot MBPP 3-shot Base Model CodeLlama-Base 7B 33.5 25.</description>
+    </item>
+    
+    <item>
+      <title>Qwen1.5-32B：Qwen1.5语言模型系列的最后一块拼图</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen1.5-32b/</link>
+      <pubDate>Tue, 02 Apr 2024 13:33:00 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen1.5-32b/</guid>
+      <description>GITHUB HUGGING FACE MODELSCOPE DEMO WeChat
+简介 开源社区长期以来一直在寻求一种能在性能、效率和内存占用之间达到理想平衡的模型。尽管出现了诸如Qwen1.5-72B和DBRX这样的SOTA模型，但这些模型持续面临诸如内存消耗巨大、推理速度缓慢以及显著的微调成本等问题。当前，参数量约30B的模型往往在这方面被看好，得到很多用户的青睐。顺应这一趋势，我们推出Qwen1.5语言模型系列的最新成员：Qwen1.5-32B和Qwen1.5-32B-Chat。
+过去数月中，我们精心研发了Qwen1.5-32B基础模型，旨在对标甚至超越当前最先进的30B模型所设定的性能基准。同时，我们在对齐方面取得了进展，特别是在RLHF方面，以提升Qwen1.5-32B-Chat的对话能力。
+模型效果 Qwen1.5-32B 是 Qwen1.5 语言模型系列的最新成员，除了模型大小外，其在模型架构上除了GQA几乎无其他差异。GQA能让该模型在模型服务时具有更高的推理效率潜力。
+以下我们将对比展示其与参数量约为30B或更大的当前最优（SOTA）模型在基础能力评估、chat评估以及多语言评估方面的性能。以下是对于基础语言模型能力的评估结果：
+Model MMLU C-Eval GSM8K MATH HumanEval MBPP BBH CMMLU Llama2-34B 62.6 - 42.2 6.2 22.6 33.0 44.1 - Yi-34B 76.3 81.4 67.2 14.4 23.2 41.0 54.3 83.7 Mixtral-8x7B 70.6 - 74.4 28.4 40.2 60.7 - - Qwen1.5-72B 77.5 84.1 79.5 34.1 41.5 53.4 65.5 83.5 Qwen1.5-32B 73.4 83.5 77.4 36.1 37.2 49.4 66.8 82.3 我们的32B模型在多种任务上展现出颇具竞争力的表现，涵盖MMLU、GSM8K、HumanEval以及BBH等。相较于72B参数模型，Qwen1.5-32B虽在性能上有轻微下降，但在多数任务中仍优于其他30B级别模型，如Llama2-34B和Mixtral-8x7B。</description>
+    </item>
+    
+    <item>
+      <title>Qwen1.5-MoE: 1/3的激活参数量达到7B模型的性能</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen-moe/</link>
+      <pubDate>Thu, 28 Mar 2024 11:31:44 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen-moe/</guid>
+      <description>GITHUB HUGGING FACE MODELSCOPE DEMO DISCORD
+介绍 今天，我们推出Qwen系列的首个MoE模型，Qwen1.5-MoE-A2.7B。它仅拥有27亿个激活参数，但其性能却能与当前最先进的70亿参数模型，如Mistral 7B和Qwen1.5-7B相媲美。相较于包含65亿个Non-Embedding参数的Qwen1.5-7B，Qwen1.5-MoE-A2.7B只有20亿个Non-Embedding参数，约为原模型大小的三分之一。此外，相比Qwen1.5-7B，Qwen1.5-MoE-A2.7B的训练成本降低了75%，推理速度则提升至1.74倍。
+模型结构 我们在Qwen1.5-MoE模型中采用了特别设计的MoE架构。通常情况下，如Mixtral等方法所示，每个transformer block中的MoE层会配备8个expert，并采用top-2门控策略进行routing。这种配置还存在很大的优化空间。我们对这一架构进行了多项改进：
+Finegrained experts 初始化 新的routing机制 DeepSeek-MoE和DBRX已经证明了finegrained experts的有效性。从FFN层过渡到MoE层时，我们一般只是简单地复制多次FFN来实现多个expert。而finegrained experts的目标是在不增加参数数量的前提下生成更多expert。为了实现这一点，我们将单个FFN分割成几个部分，每个部分作为一个独立的expert。我们设计了具有总共64个expert的的MoE，对比其他配置，我们认为这个实现能达到效果和效率的最优。
+模型初始化阶段至关重要。初步实验表明，从零开始训练MoE模型可能效率低下，且难以提升至预期的最优性能水平。因此，我们首先利用已有的Qwen-1.8B，将其改造为Qwen1.5-MoE-A2.7B。此外，在初始化阶段引入随机性可以显著加快收敛速度，并在整个预训练过程中带来更好的整体性能表现。
+目前，一个明显的趋势是在MoE中实现共享expert与routing expert。从更宏观的角度看，这是一种广义的routing方法，因为在没有共享expert的情况下，实际上就退化为传统的MoE路由设置。对于Qwen1.5-MoE-A2.7B模型，我们在其中整合了4个总是被激活的共享expert和每次只激活其中4个的60个routing expert。这种方式非常灵活，同时在我们实验中效率最佳。
+性能 为了全面评估和展示Qwen1.5-MoE-A2.7B的能力和优势，我们对base模型和chat模型进行了评估。对于base模型，我们在MMLU、GSM8K和HumanEval评估了其语言理解、数学和代码能力。此外，为了评估其多语言能力，我们按照Qwen1.5的评测方法在数学、理解、考试和翻译等多个领域的多语言基准测试中进行了测试，并在&amp;quot;Multilingual&amp;quot;列中给出了综合得分。对于chat模型，我们没有使用传统的基准测试，而是使用MT-Bench进行了测试。
+在这个比较分析中，我们将Qwen1.5-MoE-A2.7B与最好的7B模型，比如Mistral-7B（base模型为v0.1，chat模型为v0.2）、Gemma-7B以及Qwen1.5-7B进行了对比。此外，我们还将其与具有相似参数数量的MoE模型DeepSeekMoE 16B进行了比较。结果如下表所示：
+Model MMLU GSM8K HumanEval Multilingual MT-Bench Mistral-7B 64.1 47.5 27.4 40.0 7.60 Gemma-7B 64.6 50.9 32.3 - - Qwen1.5-7B 61.0 62.5 36.0 45.2 7.60 DeepSeekMoE 16B 45.0 18.8 26.8 - 6.93 Qwen1.5-MoE-A2.7B 62.5 61.5 34.2 40.8 7.17 Qwen1.5-MoE-A2.7B在与最佳的7B模型相比取得了非常接近的性能。然而，我们发现在chat模型方面仍有改进的空间。我们将继续研究如何更加有效地微调MoE模型。
+训练成本与推理效率 MoE模型的训练成本与dense模型存在显著差异。尽管MoE模型通常拥有更多的参数，但由于其稀疏性，训练开销可以显著降低。我们先对比各个模型的三个关键参数，分别是总参数数量、激活参数数量和Non-embedding参数：
+Model #Parameters #(Activated) Parameters #(Activated) Non-embedding parameters Mistral-7B 7.</description>
+    </item>
+    
+    <item>
+      <title>Qwen1.5 介绍</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen1.5/</link>
+      <pubDate>Sun, 04 Feb 2024 13:33:00 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen1.5/</guid>
+      <description>GITHUB HUGGING FACE MODELSCOPE DEMO WeChat
+简介 最近几个月，我们专注探索如何构建一个真正「卓越」的模型，并在此过程中不断提升开发者的使用体验。农历新年到来之际，我们推出通义千问开源模型1.5版本: Qwen1.5。我们开源了包括0.5B、1.8B、4B、7B、14B、32B、72B和110B共计8个不同规模的Base和Chat模型，, 以及一个MoE模型（点击博客 了解详情），并同步放出了各尺寸模型对应的量化模型。
+此次更新中，我们不仅像之前一样提供Int4和Int8的GPTQ模型，还提供了AWQ以及GGUF量化模型。为了提升开发者体验，我们将Qwen1.5的代码正式合并到HuggingFace transformers代码库中，所以现在可以直接使用 transformers&amp;gt;=4.37.0 原生代码，而无需指定 trust_remote_code 选项即可进行开发。
+我们已经与vLLM、SGLang（用于部署）、AutoAWQ、AutoGPTQ（用于量化）、Axolotl、LLaMA-Factory（用于微调）以及llama.cpp（用于本地 LLM 推理）等框架合作，所有这些框架现在都支持 Qwen1.5。Qwen1.5 系列可在 Ollama 和 LMStudio 等平台上使用。此外，API 服务不仅在 DashScope 上提供，还在 together.ai 上提供，全球都可访问。请访问here开始使用，我们建议您试用Qwen1.5-72B-chat。
+相较于以往版本，本次更新我们着重提升Chat模型与人类偏好的对齐程度，并且显著增强了模型的多语言处理能力。在序列长度方面，所有规模模型均已实现 32768 个 tokens 的上下文长度范围支持。同时，预训练 Base 模型的质量也有关键优化，有望在微调过程中为您带来更佳体验。这次迭代是我们朝向「卓越」模型目标所迈进一个坚实的步伐。
+模型效果 为了全面洞悉 Qwen1.5 的效果表现，我们对 Base 和 Chat 模型在一系列基础及扩展能力上进行了详尽评估，包括如语言理解、代码、推理等在内的基础能力，多语言能力，人类偏好对齐能力，智能体能力，检索增强生成能力（RAG）等。
+基础能力 关于模型基础能力的评测，我们在 MMLU（5-shot）、C-Eval、Humaneval、GS8K、BBH 等基准数据集上对 Qwen1.5 进行了评估。
+Model MMLU C-Eval GSM8K MATH HumanEval MBPP BBH CMMLU GPT-4 86.4 69.9 92.0 45.8 67.0 61.8 86.7 71.0 Llama2-7B 46.</description>
+    </item>
+    
+    <item>
+      <title>Qwen-VL全新升级！</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen-vl/</link>
+      <pubDate>Thu, 25 Jan 2024 13:33:00 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen-vl/</guid>
+      <description>我们在Qwen语言模型的基础上，结合此前我们提出的多模态多任务训练，以解决多模态模型在泛化能力上的局限性，并于2023年9月开源了多模态模型Qwen-VL。最近，Qwen-VL系列有了重大升级，推出了两个增强版本：Qwen-VL-Plus和Qwen-VL-Max。这两个版本的关键提升包括：
+显著提升与图像相关的推理能力； 在识别、提取和分析图像及其内含文本中的细节方面有明显增强； 支持百万像素以上的高清晰度图像以及各种宽高比的图像。 Model Name 模型描述 qwen-vl-plus Qwen的增强型大规模视觉语言模型。该模型针对细节识别能力和文本识别能力进行了显著升级，支持高达数百万像素的超高清分辨率及任意图像输入的宽高比。它在各类视觉任务上都展现出卓越的性能表现。 qwen-vl-max Qwen的最强大视觉语言模型。相较于增强版本，该模型在视觉推理和指令执行能力上做出了进一步提升，提供了更高级别的视觉感知与认知理解力,在更广泛复杂的任务上都能实现最优性能。 相比于开源版本的Qwen-VL，这两个模型在多个文本-图像多模态任务中与Gemini Ultra和GPT-4V的表现相当，显著超越了之前开源模型的最佳结果。值得一提的是，Qwen-VL-Max在中文问题回答和中文文本理解任务上超越了OpenAI的GPT-4V以及谷歌的Gemini。下文展示了实验结果及真实用例。
+Model DocVQA
+Document understanding ChartQA
+Chart understanding AI2D
+Science diagrams TextVQA
+Text reading MMMU
+College-level problems MathVista
+Mathematical reasoning MM-Bench-CN
+Natural image QA in Chinese Other Best
+Open-source LVLM 81.6%
+(CogAgent) 68.4%
+(CogAgent) 73.7%
+(Fuyu-Medium) 76.1%
+(CogAgent) 45.9%
+(Yi-VL-34B) 36.7%
+(SPHINX-V2) 72.4%
+(InternLM-XComposer-VL) Gemini Pro 88.1% 74.1% 73.9% 74.6% 47.9% 45.2% 74.3% Gemini Ultra 90.9% 80.8% 1 79.</description>
+    </item>
+    
+    <item>
+      <title>Qwen介绍</title>
+      <link>https://qwenlm.github.io/zh/blog/qwen/</link>
+      <pubDate>Tue, 23 Jan 2024 22:13:29 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/qwen/</guid>
+      <description>四个月前，我们首次发布Qwen-7B大型语言模型（LLM），正式开启了我们的开源之旅。今天，我们介绍Qwen开源家族，更全面的展示我们的工作和目标。下面是开源项目和社区的重要链接。
+PAPER GITHUB HUGGING FACE MODELSCOPE DISCORD
+Additionally, we have WeChat groups for chatting and we invite you to join the groups through the provided link in our GitHub readme.
+总览 整体上，Qwen不仅仅是一个语言模型，而是一个致力于实现通用人工智能（AGI）的项目，目前包含了大型语言模型（LLM）和大型多模态模型（LMM）。下图展示了Qwen的主要组成部分:
+在这里，“Qwen” 指的是基础语言模型，而 “Qwen-Chat” 则指的是通过后训练技术如SFT（有监督微调）和RLHF（强化学习人类反馈）训练的聊天模型。我们还有提供了专门针对特定领域和任务的模型，例如用于编程的 “Code-Qwen” 和用于数学的 “Math-Qwen”。大型语言模型（LLM）可以通过模态对齐扩展到多模态，因此我们有视觉-语言模型 “Qwen-VL” 以及音频-语言模型 “Qwen-Audio” 。值得注意的是，本篇博客仅介绍语言模型，至于多模态模型（LMM），例如Qwen-VL和Qwen-Audio，请参阅其各自的博客。
+基础模型：对齐的良好起点 构建助手模型的一般流程包括预训练和后训练，后者主要由SFT（有监督微调）和RLHF（强化学习人类反馈）组成。至于预训练，与之前的大语言模型GPT-3、Llama类似，Qwen是一个基于Transformer的语言模型，通过预测下一个词的任务进行预训练。为了简化和稳定性，我们没有为语言模型引入更多的任务，而是专注于模型规模的扩展和数据的扩展。目前，我们已经开发了5种不同大小的模型，其中4种已开源，包括 1.8B、Qwen-7B、Qwen-14B和Qwen-72B。
+Model Release Date Max Length System Prompt Enhancement # of Pretrained Tokens Minimum GPU Memory Usage of Finetuning (Q-Lora) Minimum GPU Usage of Generating 2048 Tokens (Int4) Tool Usage Qwen-1.</description>
+    </item>
+    
+    <item>
+      <title>OFA：走向通用统一模型</title>
+      <link>https://qwenlm.github.io/zh/blog/ofa/</link>
+      <pubDate>Mon, 14 Nov 2022 16:01:41 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/ofa/</guid>
+      <description>2022年可以说是属于通用模型的一年！随着多模态预训练的蓬勃发展，尤其是通用模型，我们看到实现一个具有处理多种模态的多种任务的能力的通用模型的机会。因此我们提出OFA1，即One-For-All。它是一个统一的多模态预训练模型，以统一的模型架构和任务形式兼容多模态和单模态的理解与生成任务。我们使用多模态多任务的方式预训练OFA，使其成为一个接近全能的模型。我们将OFA的模型和代码全部开源到社区，希望能推动通用模型的发展。
+论文 GitHub ModelScope 体验
+背景 自BERT2成功迁移到多模态领域，多模态预训练蓬勃发展，代表性的工作包括UNITER3、VilBERT4等。这些工作将基于Transformer的BERT2结合到单流或双流的架构中，并将图像处理成物体特征接入Transformer中。而到了2021年，随着ViT5的兴起，越来越多放弃物体特征的工作出现，不再依赖复杂的如Faster-RCNN6的流程，比如最简单的使用patch映射ViLT7、使用CLIP8的CLIP-ViL9，等等。而SimVLM10作为这个领域一个代表工作，利用了T5/BART的特性将理解和生成任务兼容并实现多项最优表现。这些进展都奠定了通用统一模型的发展基础，2022年涌现了一批工作，包括我们的OFA、Unified-IO11、Flamingo12、BeiT-313等。
+方法 OFA希望实现的是任务、模态和架构的统一。我们提出统一模型应当具备三大特性，即任务无关、模态无关和任务全面性。任务无关即统一模型应当能接受多种任务形式而无需针对性做模型结构和训练方法的改变，模态无关即不需针对模态做特定模型结构和训练方法修改，任务全面性即模型应当尽可能学习多的任务从而让自己能力更全面更能融会贯通迁移到没学习过的新任务上。因此我们提出了三大统一，即模态、架构和任务的统一。下面我们逐一解释。
+统一模态最大的难题是不同模态的离散化表示，不然我们就需要使用diffusion模型14来解决问题。文本表示无需改动，主要的变化在于图像和物体框。得益于近年来vector quantization的快速发展1516以及基于Transformer的文本生成图像模型1718，图像可以用VQ token来进行表示。而针对物体框，则可以采用分桶的方式对连续的坐标值实现离散化。
+模型架构上我们选择的是基于Transformer的编码-解码器。它已经在NLP领域取得巨大成功，如T519。而对于图像输入，我们使用ResNet的前3个stage。而对于Transformer，我们加入Normformer20的方法提升模型训练稳定性和最终迁移效果。
+多任务学习是OFA的一大特点。我们使用了8个任务做预训练，其中包括5个图文任务、2个视觉任务和1个自然语言任务。图文任务包括视觉定位、定位物体描述、视觉问答、图文匹配和图像描述，视觉任务包括目标检测和图像还原，语言任务则是文本还原。为了让模型识别不同任务，我们为每个任务增加相应的文本提示，说明任务的内容。我们希望模型遇到新的提示能实现零样本学习。
+我们使用了公开数据集进行预训练。我们希望研究人员能够利用我们的开源复现相应的结果。
+我们一共开源了5个规模的模型，分别是OFA-Tiny (33M)，OFA-Medium (93M)，OFA-Base (180M)，OFA-Large(470M)和OFA-Huge (930M)。具体数据查看下表。
+实验 我们在多模态和单模态任务上都做了实验。在视觉-语言理解上，我们在视觉问答和视觉推理上做了实验。在VQA上，OFA的效果和800亿参数的Flamingo以及基于50亿图文数据训练的20亿参数的CoCa效果相当，并且在视觉推理上取得最优成绩。而在视觉-语言生成上，OFA在两个阶段的图像描述评测均取得最优效果。而在视觉定位任务上，base规模的模型就可以超出此前最好的模型，也反映了生成式的方法和多任务训练的有效性，并且随着规模的增加，模型效果也能实现稳定增长。
+此外，我们还在文本图像生成任务上做了测试，因为预训练中我们设计了图像还原任务，模型应当具备一定的图像生成能力。可以看到OFA可以达到非常低的FID分数，并且在更大的数据上微调能明显提升它的生成效果。
+单模态方面，我们在GLUE上验证OFA的自然语言理解能力，Gigaword上验证自然语言生成能力，以及ImageNet上验证视觉理解能力。可以看到OFA在GLUE上可以取得匹敌RoBERTa和DeBERTa的效果，而此前的多模态模型距离最优的自然语言模型差距都很大。在摘要生成上，OFA也取得最优效果。而视觉分类上，OFA也能取得匹敌BeiT21和MAE22的效果。
+另外，我们观察到OFA具备一定的新任务和新领域的迁移能力。如下图所示。
+这个例子说明OFA对提示的理解和组合多项技能的能力。我们设计了一个基于定位的视觉问答的任务，相当于视觉问答和定位描述的组合。具体实现方式就是修改任务的提示。包含了问题和定位信息的提示引导模型做出了正确的回答。
+另外，OFA迁移到新领域的能力也比较不错。在动画领域数据的定位上，模型能实现较为精准的物体定位。这是因为模型学过这个任务而预训练又见过该领域数据。这也体现了模型的组合能力。
+总结 这是我们通用统一模型研究工作的起点。我们认为这个方向很有前景，因为Transformer有着一统天下的趋势，同时它能很好地兼容多种模态和任务。我们相信，多模态领域很快也会迎来属于它的GPT-323！
+Wang, P., Yang, A., Men, R., Lin, J., Bai, S., Li, Z., Ma, J., Zhou, C., Zhou, J., &amp;amp; Yang, H. (2022). Unifying Architectures, Tasks, and Modalities Through a Simple Sequence-to-Sequence Learning Framework. International Conference on Machine Learning.&amp;#160;&amp;#x21a9;&amp;#xfe0e;
+Devlin, J., Chang, M.</description>
+    </item>
+    
+    <item>
+      <title>OFASys：一行代码带你搞定多任务学习！</title>
+      <link>https://qwenlm.github.io/zh/blog/ofasys/</link>
+      <pubDate>Wed, 28 Dec 2022 18:01:21 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/ofasys/</guid>
+      <description>引言 通用模型非常火！我们现在跟随多模态多任务学习的发展似乎看到了实现一个真正的通用模型的机会。我们此前推出的OFA便是朝着这个目标迈向的重要一步。但是，我们在实际实现过程中遇到了非常多的困难。比如说，把多任务训练的模型搭建起来，组织多任务的训练比如给数据打batch和保证训练稳定等等，都非常困难。因此，我们推出一个AI系统OFASys，它主要解决多模态多任务学习的实现问题。简单来说，它主要通过一个叫做“Instruction”的接口来实现。Instruction 即指定了任务描述和输入信息的模板。因此，用户只需要写一行代码构建好自己的 Instruction，就可以构建一个多模态多任务学习的任务。后续的复杂步骤用户无需关心，包括数据处理、模型构建和训练等。总而言之，OFASys帮你摆脱很多复杂的实现细节，让你专注于设计任务和模态组合等。
+论文 GitHub
+背景 Transformer和预训练技术的蓬勃发展让我们看到了实现通用AI的机会。在自然语言领域，我们见证了GPT-31以及不可思议的ChatGPT及其背后的GPT-3.5系列，它们都具备了极强的问答、对话、以及文字创作能力等。而在多模态领域，我们也看到通用统一模型的快速崛起，包括我们的OFA2、GATO3、Unified-IO4等。实现这样的模型和系统是困难的，难点往往在于实现中。算法工程师最难受的事情往往是如何实现这样一个模型，并且成功把它训起来，接入不同类型的数据和任务并且对它们实现良好的管理。尽管我们针对深度学习有了PyTorch和TensorFlow这样的基建，以及很多诸如Hugging Face Transformers和fairseq这样的帮助实现Transformer的框架，但当前依然没有一个专门针对多模态多任务学习的提供良好抽象和相关工具的系统。
+用户接口 介绍系统设计前，我们先看看如何在OFASys中使用1行代码实现一个多任务学习模型。具体而言，你需要写一个合适的 Instruction 。下面是一些例子。
+以上例子中，两个句子用“-&amp;gt;”分隔，表示输入和期望输出。“&amp;lt;tt&amp;gt;[IMAGE:img]&amp;lt;/tt&amp;gt;”表示有一个图像输入和 数据集中的&amp;lt;tt&amp;gt;img&amp;lt;/tt&amp;gt;字段关联。Instruction 中的文本则表示这个任务是图像描述。任务输出是文本序列，即对应数据集中的&amp;lt;tt&amp;gt;cap&amp;lt;/tt&amp;gt;字段.
+另一个例子是自然语言推理的例子，我们以MNLI为例：
+和上述例子类似，我们用模板和指示词来构建 Instruction 。不同的是，输入侧包含2个输入。此外，由于我们发现在解码器重复输入有助于效果提升，我们在输出端用一个&amp;lt;tt&amp;gt;no_loss&amp;lt;/tt&amp;gt;的信号表示不计算这段序列对应的损失函数。而由于标签是一个封闭集，我们用&amp;lt;tt&amp;gt;closed_set&amp;lt;/tt&amp;gt;来表示。
+简而言之，使用OFASys可以让一切变得简单。你也许只需要1行代码就可以解决问题！
+系统实现 一个良好的系统实现是一个易用接口的基础。系统实现的整体架构如下所示。
+OFASys通过解析 Instruction 来将任务定义和任务数据传入任务计划中。每个计划有一个模型的层次结构，其中包括模态特定的前处理和后处理模块以及模态无关的计算引擎。通用模型在这里负责融合多模态输入以及获得输出。由于输入输出都是表示序列，因此通用模型是非常灵活的。通用模型的输出最终传入后处理模块得到最终输出。而诸如损失函数计算以及生成器等都有大量实现方式。
+而在多任务学习场景中，有多个上述计划。OFASys共享大部分可训练的参数，这样通用模型能使用尽可能多的数据进行训练。任务调度器在这里负责安排任务优先级以及管理多任务优化，而逻辑调度器则负责安排到多台物理机上。
+应用实例: OFA+ 我们训练了一个基于OFA的通用模型OFA+，它首次实现同时处理文本、图像、语音、视频和动作多种模态。具体包括一个通用的OFA+ (Generalist)以及一个基于多模态MoE的升级版本OFA+ (Generalist MoE)。对比对象则为我们此前的OFA，它需要针对每个任务单独微调，我们称之为OFA+ (Specialist)。
+从上述结果可以看出，OFA+整体能保留接近95%的OFA+ (Specialist)在各个下游任务的效果，其中涵盖7种模态的23个任务。这也能看出来多任务学习不仅赋予模型实现多任务的基础能力，同时能让它在各项任务上都能达到顶级的表现。
+总结 随着通用模型快速发展，特定系统和库的空缺成了一个棘手的问题。OFASys就是为了解决实现多模态多任务学习难的问题而生。我们希望它能推动多模态多任务学习的研究同时帮助实现更加通用的通用模型。
+Brown, T.B., Mann, B., Ryder, N., Subbiah, M., Kaplan, J., Dhariwal, P., Neelakantan, A., Shyam, P., Sastry, G., Askell, A., Agarwal, S., Herbert-Voss, A., Krueger, G., Henighan, T.J., Child, R., Ramesh, A.</description>
+    </item>
+    
+    <item>
+      <title>Chinese CLIP: 中文图文对比学习预训练</title>
+      <link>https://qwenlm.github.io/zh/blog/chinese-clip/</link>
+      <pubDate>Sat, 24 Dec 2022 14:54:19 +0800</pubDate>
+      
+      <guid>https://qwenlm.github.io/zh/blog/chinese-clip/</guid>
+      <description>CLIP1是多模态表示学习领域一个现象级的模型。它不仅扮演基础模型，并且建立了视觉和语言的桥梁。它还推动了很多其他领域技术的发展，尤其是文本生成图像。然而，我们还需要特定语言的CLIP，尤其在现实应用中，比如跨模态检索。在此之前还没有效果较好的开源中文CLIP。因此我们希望通过这个项目推动中文多模态的发展。
+论文 Github ModelScope 体验
+背景 在诸如跨模态检索的图文应用中，语言往往扮演重要的角色。假设直接使用CLIP和翻译文本，翻译质量将严重影响下游任务表现。此外，预训练数据的分布也同样重要。我们希望能够有一个模型较好地建模中文世界的数据，那么CLIP的图像学习同样需要适应到中文世界图像的领域中，这些图像在很多维度都有自己的特色，比如它所蕴含的文化价值、展现的社会风貌等。
+下面是一个多语言CLIP2检索的例子。不难看出，模型难以理解一些中文概念，甚至只能召回一些西方文化类似的概念的图片。
+并且，我们还做了相关实验，对比原始CLIP配合翻译文本和中文CLIP在跨模态检索任务上的表现。原始CLIP的效果远低于中文CLIP，这也一定程度反映语言特定的CLIP模型的必要性。
+方法 我们尽可能采用和原始CLIP一致的设定，不去增加模块或者设计复杂化的训练方法。而为了更加高效的训练，包括训练效率和最终迁移效果的提升，我们没有选择从头开始预训练，而是提出一个两阶段预训练的方法。
+在第一阶段中，我们将CLIP的双塔用已有的预训练模型进行初始化，分别是CLIP的视觉侧（如ViT-B、ResNet等）以及中文RoBERTa RoBERTA-wwm-Chinese。我们冻结图像塔，通过对比学习让文本塔的输出表示和图像塔的一致。在第二阶段中，我们解冻图像塔，进行对比学习继续训练，从而图像塔也能学习建模中文领域的图像数据分布。
+在可复现性方面，我们尽可能采用公开数据集，其中包括LAION-5B3的中文部分、悟空数据集4、来自VG和MSCOCO等的翻译数据。总数据量大约2亿。
+我们推出了5个规模的中文CLIP模型，其中包括ResNet-50、ViT-B/16、ViT-L/14、ViT-L/14@336px和ViT-H/14。具体数据详见下表。
+实验 我们做了3个跨模态检索的实验，其中包括中文原生的MUGE和英文原生的Flickr30K-CN和COCO-CN。在所有数据集上，中文CLIP都取得了最好的效果，而尤其在MUGE上中文CLIP相比此前模型的优势最为巨大。这也反映中文CLIP在中文原生数据集上能够取得更好的表现。
+我们也尝试了中文CLIP的零样本分类能力，并在ELEVATER5上做了测试，具体实现包括翻译标签和提示词。实验结果也反映中文CLIP在英文原生的基准上同样能取得有竞争力的表现。
+我们补充了实验说明两阶段训练方法的有效性。对比从头训练，不管是收敛效率还是最终迁移效果上，两阶段的方法都取得更好的效果，并且对比单纯的一阶段联合训练，第二阶段预训练的加入还能进一步提升效果。这也意味着当我们打造一个语言特定的中文CLIP其实不需要从头来，可以在已有模型的基础上站得更高。
+Ablation studies. 局限性及未来工作 尽管上文介绍了中文CLIP的强大之处，但我们仍需要认识到当前中文CLIP还没有充分验证其作为视觉基础模型的作用。经验上，它应当在中文原生数据上表现更好。因此，在下一阶段的工作中，我们将研究构造一个针对中文多模态表示学习和视觉表示学习的基准。
+欢迎大家访问我们的GitHub存储库和ModelScope模型库，并使用我们的代码和模型。希望能够帮助到你们的研究和应用！
+Radford, A., Kim, J.W., Hallacy, C., Ramesh, A., Goh, G., Agarwal, S., Sastry, G., Askell, A., Mishkin, P., Clark, J., Krueger, G., &amp;amp; Sutskever, I. (2021). Learning Transferable Visual Models From Natural Language Supervision. International Conference on Machine Learning.&amp;#160;&amp;#x21a9;&amp;#xfe0e;
+Carlsson, F., Eisen, P., Rekathati, F., &amp;amp; Sahlgren, M.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Analytics Report</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 14px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #f8f9fa;
+            color: #555;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        tr:hover {
+            background-color: #f1f5f9;
+            transition: background-color 0.3s ease;
+        }
+        .highlight {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .metadata {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px dashed #ccc;
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            text-align: center;
+            display: flex;
+            justify-content: space-around;
+        }
+        .metadata span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>📊 Google Analytics Sessions Report</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Channel Group</th>
+                    <th>Sessions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Organic Search</td>
+                    <td class="highlight">200</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="metadata">
+            <span>💱 Currency: <strong>JPY</strong> (Japanese Yen)</span>
+            <span>🌍 Time Zone: <strong>Asia/Tokyo</strong></span>
+        </div>
+    </div>
+
+</body>
+</html>
