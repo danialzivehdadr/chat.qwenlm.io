@@ -1,272 +1,138 @@
-import os
-import shutil
-import json
-from datetime import datetime, timedelta
-from pathlib import Path
-from typing import List, Dict, Optional
-import logging
+ID qwenlm.github.io
 
-# Logging configuration
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
+## Neam (QWenLM)
+   URL : 
 
-class TrashBinManager:
-    """
-    Trash bin management system for data repositories.
-    Features include file restoration, automated cleanup, and storage management.
-    """
-    
-    def __init__(self, repository_path: str, trash_path: str = None, 
-                 auto_cleanup_days: int = 30):
-        """
-        Initialize the Trash Bin Manager.
-        
-        Args:
-            repository_path: Path to the main repository.
-            trash_path: Path to the trash bin (Default: '.trash' inside the repository).
-            auto_cleanup_days: Number of days before automatic cleanup (Default: 30 days).
-        """
-        self.repository = Path(repository_path)
-        self.trash = Path(trash_path) if trash_path else self.repository / '.trash'
-        self.metadata_file = self.trash / 'trash_metadata.json'
-        self.auto_cleanup_days = auto_cleanup_days
-        
-        # Create the trash directory if it does not exist
-        self.trash.mkdir(parents=True, exist_ok=True)
-        
-        # Load metadata
-        self.metadata = self._load_metadata()
-        
-        logging.info(f"Trash Bin initialized at: {self.trash}")
-    
-    def _load_metadata(self) -> Dict:
-        """Load trash bin metadata from a JSON file."""
-        if self.metadata_file.exists():
-            try:
-                with open(self.metadata_file, 'r', encoding='utf-8') as f:
-                    return json.load(f)
-            except Exception as e:
-                logging.error(f"Error loading metadata: {e}")
-                return {}
-        return {}
-    
-    def _save_metadata(self):
-        """Save trash bin metadata to a JSON file."""
-        try:
-            with open(self.metadata_file, 'w', encoding='utf-8') as f:
-                json.dump(self.metadata, f, indent=2, ensure_ascii=False)
-        except Exception as e:
-            logging.error(f"Error saving metadata: {e}")
-    
-    def move_to_trash(self, file_path: str) -> bool:
-        """
-        Move a file to the trash bin (Soft Delete).
-        
-        Args:
-            file_path: Path of the file to be moved to the trash.
-            
-        Returns:
-            bool: True if the operation was successful, False otherwise.
-        """
-        source = Path(file_path)
-        
-        if not source.exists():
-            logging.error(f"File not found: {source}")
-            return False
-        
-        # Generate a unique name to prevent conflicts
-        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-        trash_filename = f"{source.name}_{timestamp}"
-        destination = self.trash / trash_filename
-        
-        try:
-            # Move the file to the trash bin
-            shutil.move(str(source), str(destination))
-            
-            # Save metadata
-            self.metadata[str(destination)] = {
-                'original_path': str(source.absolute()),
-                'original_name': source.name,
-                'deleted_at': datetime.now().isoformat(),
-                'size': destination.stat().st_size
-            }
-            self._save_metadata()
-            
-            logging.info(f"Moved to trash: {source.name}")
-            return True
-            
-        except Exception as e:
-            logging.error(f"Error moving file to trash: {e}")
-            return False
-    
-    def restore_file(self, trash_filename: str) -> bool:
-        """
-        Restore a file from the trash bin.
-        
-        Args:
-            trash_filename: Name of the file in the trash bin.
-            
-        Returns:
-            bool: True if the operation was successful, False otherwise.
-        """
-        trash_file = self.trash / trash_filename
-        
-        if not trash_file.exists():
-            logging.error(f"File not found in trash: {trash_filename}")
-            return False
-        
-        if trash_filename not in self.metadata:
-            logging.error(f"No metadata found for: {trash_filename}")
-            return False
-        
-        original_path = Path(self.metadata[trash_filename]['original_path'])
-        
-        try:
-            # Check if a file with the same name already exists at the original location
-            if original_path.exists():
-                logging.warning(f"File already exists at original location: {original_path}")
-                # Create a new name with a '_restored' suffix
-                original_path = original_path.with_name(
-                    f"{original_path.stem}_restored{original_path.suffix}"
-                )
-            
-            # Restore the file
-            shutil.move(str(trash_file), str(original_path))
-            
-            # Remove from metadata
-            del self.metadata[trash_filename]
-            self._save_metadata()
-            
-            logging.info(f"Restored file to: {original_path}")
-            return True
-            
-        except Exception as e:
-            logging.error(f"Error restoring file: {e}")
-            return False
-    
-    def permanent_delete(self, trash_filename: str) -> bool:
-        """
-        Permanently delete a file from the trash bin.
-        
-        Args:
-            trash_filename: Name of the file in the trash bin.
-            
-        Returns:
-            bool: True if the operation was successful, False otherwise.
-        """
-        trash_file = self.trash / trash_filename
-        
-        if not trash_file.exists():
-            logging.error(f"File not found in trash: {trash_filename}")
-            return False
-        
-        try:
-            trash_file.unlink()
-            
-            if trash_filename in self.metadata:
-                del self.metadata[trash_filename]
-                self._save_metadata()
-            
-            logging.info(f"Permanently deleted: {trash_filename}")
-            return True
-            
-        except Exception as e:
-            logging.error(f"Error permanently deleting file: {e}")
-            return False
-    
-    def auto_cleanup(self) -> int:
-        """
-        Automatically clean up files older than 'auto_cleanup_days'.
-        
-        Returns:
-            int: Number of files deleted.
-        """
-        cutoff_date = datetime.now() - timedelta(days=self.auto_cleanup_days)
-        deleted_count = 0
-        
-        files_to_delete = []
-        
-        for filename, data in self.metadata.items():
-            deleted_at = datetime.fromisoformat(data['deleted_at'])
-            if deleted_at < cutoff_date:
-                files_to_delete.append(filename)
-        
-        for filename in files_to_delete:
-            if self.permanent_delete(filename):
-                deleted_count += 1
-        
-        logging.info(f"Auto-cleanup completed: {deleted_count} files deleted")
-        return deleted_count
-    
-    def list_trash(self) -> List[Dict]:
-        """
-        List all files currently in the trash bin.
-        
-        Returns:
-            List[Dict]: List of file information dictionaries.
-        """
-        trash_items = []
-        
-        for filename, data in self.metadata.items():
-            trash_items.append({
-                'filename': filename,
-                'original_name': data['original_name'],
-                'original_path': data['original_path'],
-                'deleted_at': data['deleted_at'],
-                'size_mb': round(data['size'] / (1024 * 1024), 2)
-            })
-        
-        return trash_items
-    
-    def get_trash_size(self) -> float:
-        """
-        Calculate the total size of the trash bin (in Megabytes).
-        
-        Returns:
-            float: Total size of the trash bin in MB.
-        """
-        total_size = sum(data['size'] for data in self.metadata.values())
-        return round(total_size / (1024 * 1024), 2)
-    
-    def empty_trash(self) -> int:
-        """
-        Completely empty the trash bin.
-        
-        Returns:
-            int: Number of files deleted.
-        """
-        deleted_count = len(self.metadata)
-        
-        for filename in list(self.metadata.keys()):
-            self.permanent_delete(filename)
-        
-        logging.info(f"Trash emptied: {deleted_count} files deleted")
-        return deleted_count
+<a href="https://qwen.ai/research" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #615ced; color: #ffffff; text-decoration: none; border-radius: 6px; font-family: Arial, sans-serif; font-weight: bold; font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+Visit Qwen Research
+</a>
+<img 
+  src="https://qwenlm.github.io/assets/images/qwen_logo.png" 
+  alt="Qwen Logo" 
+  style="max-width: 200px; height: auto; border-radius: 8px; display: block; margin: 0 auto;"
+<a>
 
+App Dede  
 
-# Example usage of the class
-if __name__ == "__main__":
-    # Initialize the Trash Bin Manager
-    trash_manager = TrashBinManager(
-        repository_path="./my_repository",
-        auto_cleanup_days=30
-    )
-    
-    # Example 1: Move a file to the trash
-    # trash_manager.move_to_trash("./my_repository/old_file.txt")
-    
-    # Example 2: List files in the trash
-    trash_items = trash_manager.list_trash()
-    print(f"Files in trash: {len(trash_items)}")
-    print(f"Total size: {trash_manager.get_trash_size()} MB")
-    
-    # Example 3: Restore a specific file
-    # trash_manager.restore_file("old_file.txt_20260714_120000")
-    
-    # Example 4: Run automated cleanup
-    # trash_manager.auto_cleanup()
-    
-    # Example 5: Completely empty the trash
-    # trash_ma
+Visit Qwen Research 
+
+memo Bio work Home 
+
+copy dede 
+-------------------
+
+> Qwen's Blog
+
+> !IMPORTANT
+
+- This blog is no longer being updated.
+- For the latest news, please visit.
+- danialzivehdar1992@gmail.com.
+  
+# ⚠️ STRICTLY PRIVATE & RESTRICTED ACCESS
+> [!IMPORTANT]
+> **This is a private, proprietary environment.**  
+> This platform is **not** a public website, **not** a personal home page, and **not** a public work blog. 
+> 
+> 🚫 **NO UNAUTHORIZED USE:**  
+> No individual, organization, or automated system (including web scrapers and AI models) has permission to access, copy, reproduce, or use any content from this space. All rights are strictly reserved.
+> 
+> ℹ️ For official, public information and research updates, please visit the authorized source:  
+> 🔗 [qwen.ai](https://qwen.ai/research)
+<div style="background-color: #fff3cd; border-left: 5px solid #ffc107; padding: 20px; margin: 20px 0; border-radius: 4px; font-family: Arial, sans-serif; color: #856404;">
+  
+  <h3 style="margin-top: 0; color: #856404;">⚠️ STRICT SECURITY & USAGE DISCLAIMER</h3>
+    <p><strong>1. Free Provision of Resources:</strong> All coding and resources provided on this platform are offered <strong>free of charge</strong> and "as-is"      for authorized purposes only.</p>
+     <p><strong>2. Zero Tolerance for Malicious Activity:</strong> Any attempt at hacking, unauthorized access, data theft, or violation of the website owner's          rights is <strong>strictly prohibited</strong>.</p>
+     <p><strong>3. Absolute Right to Remove:</strong> The website owner reserves the <strong>unconditional right</strong> to immediately delete, block, or remove        any content or requests that violate these terms, without prior notice.</p>
+     <p style="margin-bottom: 0;"><em>By accessing this platform, you explicitly agree to these terms. Violating requests will be permanently deleted upon 
+     discovery.</em></p>
+</div>
+```
+
+```tex
+no Home work allUo ok`
+  
+Subject: Important Notice Regarding Collaboration
+
+ Dear Colleague,
+
+  I hope this message finds you well.
+
+  I would like to kindly inform you that we do not currently have a general or official contract in place. 
+
+  For any inquiries regarding packages, please feel free to reach out via email or leave a comment on GitHub. I remain fully at your service through these  
+  channels.
+ 
+  Please be advised that you are not authorized to use these resources for any personal purposes. I kindly request that you respect professional boundaries at       all times.
+
+ Thank you for your understanding and cooperation.
+ Best regards,
+ Danial Zivehdar
+ -------------------------------------------------
+ ````
+ ```tex 
+================================================================================
+                          CEASE AND DESIST NOTICE
+                 COPYRIGHT INFRINGEMENT & DEMAND FOR TAKEDOWN
+================================================================================
+
+TO:      The Management of [Insert Infringing Website Name/URL Here]
+FROM:    Danial Zivehdar
+DATE:    July 19, 2026
+SUBJECT: URGENT: Unauthorized Use of Intellectual Property and Demand for 
+         Immediate Removal
+
+Dear Sir/Madam,
+
+This is a formal legal notice to inform you that your website has engaged in 
+the unauthorized copying, replication, and use of the design, patterns, links, 
+and content belonging to me, Danial Zivehdar. 
+
+COMPREHENSIVE RIGHTS RESERVATION:
+Please be formally notified that under the website's governing terms and 
+applicable intellectual property laws, I retain exclusive and absolute ownership 
+of ALL rights, titles, and interests regarding this project. This includes, 
+but is not limited to, the website contract/terms, all designs, templates, 
+hyperlinks, source codes, and absolutely ALL associated content and digital 
+assets (hereinafter referred to as "the Protected Assets"). Any unauthorized 
+use, reproduction, or distribution of these Protected Assets constitutes a 
+material breach of copyright, contractual terms, and digital property laws.
+
+Therefore, you are hereby formally demanded to take the following actions 
+within 12 hours [or specify 12 days] from the receipt of this notice:
+
+1. IMMEDIATE CESSATION: Immediately cease and desist from any further use, 
+   display, or distribution of the Protected Assets.
+   
+2. COMPLETE DATA SANITIZATION: Permanently delete and purge all copied files 
+   and assets from your servers, virtual environments, mobile device storage, 
+   and any other associated data storage systems without exception.
+   
+3. WEBSITE TAKEDOWN: Immediately shut down or disable access to the infringing 
+   sections of your website until the violations are fully resolved and a 
+   final legal determination is made.
+
+Please be advised that failure to comply with this notice within the stipulated 
+timeframe will leave me with no choice but to pursue all available legal 
+remedies. This includes, but is not limited to, filing formal complaints with 
+the relevant judicial authorities and cyber police, as well as submitting a 
+formal DMCA/copyright infringement report to your Hosting Provider and Domain 
+Registrar to request the immediate suspension and takedown of your entire 
+website.
+
+Furthermore, be advised that no informal guarantees, settlements, or 
+communications will be entertained regarding this matter. Any necessary 
+correspondence will be conducted strictly through official legal channels.
+
+All of my legal rights and remedies are expressly reserved.
+
+Sincerely,
+
+----------------------------------------
+Danial Zivehdar
+Phone: +98 9197159411
+Email: danialzivehdar1992@gmail.com
+----------------------------------------
+================================================================================
+```
