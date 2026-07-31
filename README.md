@@ -2,8 +2,8 @@
                                                                                                                                                                   none; border-radius: 6px; font-family: Arial, sans-serif; font-weight: bold; font-size: 16px; 
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
 
-<a href=https://chat.qwen.ai/community/webdev/b36e63cd-2715-4b45-a4ff-3e1eaca0c316/>
-
+- href=https://chat.qwen.ai/community/webdev/b36e63cd-2715-4b45-a4ff-3e1eaca0c316>
+  //////
 
 Visit Qwen Research
 </a>
