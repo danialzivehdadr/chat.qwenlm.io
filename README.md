@@ -1,4 +1,12 @@
-<a href="https://qwen.ai/research" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #615ced; color: #ffffff; text-decoration: none; border-radius: 6px; font-family: Arial, sans-serif; font-weight: bold; font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+<a href="https://qwen.ai/research" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #615ced; color: #ffffff; text-decoration: 
+
+  
+  
+  
+  
+  
+  
+  none; border-radius: 6px; font-family: Arial, sans-serif; font-weight: bold; font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
 Visit Qwen Research
 </a>
 <img 
@@ -18,10 +26,6 @@ copy dede
 > Qwen's Blog
 
 > !IMPORTANT
-
-- This blog is no longer being updated.
-- For the latest news, please visit.
-- danialzivehdar1992@gmail.com.
   
 # ⚠️ STRICTLY PRIVATE & RESTRICTED ACCESS
 > [!IMPORTANT]
