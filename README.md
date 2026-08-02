@@ -45,6 +45,7 @@ copy dede
      <p style="margin-bottom: 0;"><em>By accessing this platform, you explicitly agree to these terms. Violating requests will be permanently deleted upon 
      discovery.</em></p>
 </div>
+```
 
 ```tex
 no Home work allUo ok`
@@ -66,6 +67,7 @@ Subject: Important Notice Regarding Collaboration
  Best regards,
  Danial Zivehdar
  -------------------------------------------------
+````
 ================================================================================
                           CEASE AND DESIST NOTICE
                  COPYRIGHT INFRINGEMENT & DEMAND FOR TAKEDOWN
