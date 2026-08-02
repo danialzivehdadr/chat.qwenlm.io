@@ -1,10 +1,9 @@
 <a href="https://qwen.ai/research" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #615ced; color: #ffffff; text-decoration: 
-                                                                                                                                                                  none; border-radius: 6px; font-family: Arial, sans-serif; font-weight: bold; font-size: 16px; 
+  none; border-radius: 6px; font-family: Arial, sans-serif; font-weight: bold; font-size: 16px; 
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
 
 - href=https://chat.qwen.ai/community/webdev/b36e63cd-2715-4b45-a4ff-3e1eaca0c316>
-  //////
-
+  
 Visit Qwen Research
 </a>
 <img 
