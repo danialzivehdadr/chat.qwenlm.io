@@ -4,9 +4,9 @@ copy dear spe /
 Join bio name aame "a, s"!,
 Join  heom auo uo "ok repeat" 
 uotnd kare on "ok baby" 
-den ffffffffffffffffff do ro. 'nd'
+den ffffffffffffffffff do ro "nd"
 Join folder url uo "ok.fotenk"
-sys foder Join annste virus! "dede"
+sys foder Join annste virus "dede"
 ran system in  
 a 1 on (e) var daewqp 
 ((addres lock _^) name`
