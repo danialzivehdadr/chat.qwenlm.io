@@ -7,10 +7,9 @@ uotnd kare on "ok baby"
 den ffffffffffffffffff do ro "nd"
 Join folder url uo "ok.fotenk"
 sys foder Join annste virus "dede"
-ran system in  
-a 1 on (e) var daewqp 
+ran system in 1 on (e) var daewqp 
 ((addres lock _^) name`
 all adder inaddress ll  
-URL folder view naem on
-URL: electron)
-*************
+URL folder view naem on "dede"
+URL: electron \t)
+****************
