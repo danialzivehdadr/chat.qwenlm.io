@@ -1,5 +1,5 @@
-*/ eione settings x,  v, z, paly 
-phtoh sys system = viar as dear as/ mp,
+eione settings x,  v, z, paly 
+phtoh sys system = viar as dear as mp,
 copy dear spe /
 Join bio name aame "a, s"!,
 Join  heom auo uo "ok repeat" 
@@ -10,8 +10,7 @@ sys foder Join annste virus "dede"
 ran system in  
 a 1 on (e) var daewqp 
 ((addres lock _^) name`
-all adder 
-inaddress ll  
-URL: electron
+all adder inaddress ll  
+URL folder view naem on
+URL: electron)
 *************
-/*
