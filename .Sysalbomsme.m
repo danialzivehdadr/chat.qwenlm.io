@@ -1,5 +1,5 @@
-eione settings  *x,  v, z, paly 
-phtoh sys system  = viar as dear as/ mp,
+*/ eione settings x,  v, z, paly 
+phtoh sys system = viar as dear as/ mp,
 copy dear spe /
 Join bio name aame "a, s"!,
 Join  heom auo uo "ok repeat" 
@@ -14,3 +14,4 @@ all adder
 inaddress ll  
 URL: electron
 *************
+/*
