@@ -15,10 +15,10 @@ ran system in 1 on (e) var daewqp
 ````
 ((addres lock _^) dos System `uozrname`
 all adder inaddress ==ll 
-URL folder view naem on "dede"
-Jion video peixp files dede ro 
-phtoh fodere docs pdf file files 
-deputy gin `dede'
+URL:folderview naem on "dede"
+Jion videopeixpfiles "dedero"
+phtoh fodere (docs pdf, file, files,)
+deputy gin (dede)
 URL: (ro_recycling_res"no")
 ‭ln(^(-1)atan(acos(lg(3e))))
 ]
