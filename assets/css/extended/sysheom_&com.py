@@ -7,7 +7,7 @@ Join bio nameaame!"a, s",
 Join heom, work, auouo 
 "okrepeat" 
 uotnd kare on "okbaby" 
-================================
+======================
 den (up addrs) doro "n/d"
 Join folder url uo "ok.fotenk"
 sys foder Join annste virus "dede"
