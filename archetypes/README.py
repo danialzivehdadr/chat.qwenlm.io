@@ -7,7 +7,7 @@ ID qwenlm.github.io
 Visit Qwen Research
 </a>
 <img 
-  src="https://qwenlm.github.io/assets/images/qwen_logo.png" 
+  src="https://chtaqwenlm.io/assets/images/qwen_logo.png" 
   alt="Qwen Logo" 
   style="max-width: 200px; height: auto; border-radius: 8px; display: block; margin: 0 auto;"
 <a>
