@@ -7,45 +7,46 @@
 Visit Qwen Research
 </a>
 <img 
-  src="https://qwenlm.github.io/assets/images/qwen_logo.png" 
+  src="https://chat.qwenlm.io/assets/images/qwen_logo.png" 
   alt="Qwen Logo" 
   style="max-width: 200px; height: auto; border-radius: 8px; display: block; margin: 0 auto;"
 <a>
 
-App Dede  
+## App Dede  
 
-Visit Qwen Research 
+- Visit Qwen Research 
 
-memo Bio work Home 
+- memo Bio work Home 
 
-copy dede 
----------
-````
+- copy dede 
+-----------
+
 `contracts-logistics-forecast-autodedelde`
-> Qwen's Blog
 
+> Qwen's Blog
 > !IMPORTANT
   
 # ⚠️ STRICTLY PRIVATE & RESTRICTED ACCESS
-> [!IMPORTANT]
-> **This is a private, proprietary environment.**  
-> This platform is **not** a public website, **not** a personal home page, and **not** a public work blog. 
-> 
-> 🚫 **NO UNAUTHORIZED USE:**  
-> No individual, organization, or automated system (including web scrapers and AI models) has permission to access, copy, reproduce, or use any content from this space. All rights are strictly reserved.
-> 
-> ℹ️ For official, public information and research updates, please visit the authorized source:  
-> 🔗 [qwen.ai](https://qwen.ai/research)
+- [!IMPORTANT]
+- **This is a private, proprietary environment.**  
+- This platform is **not** a public website, **not** a personal home page, and **not** a public work blog. 
+ 
+- 🚫 **NO UNAUTHORIZED USE:**  
+- No individual, organization, or automated system (including web scrapers and AI models) has permission to access, copy, reproduce, or use any content from this space. All rights are strictly reserved.
+
+- ℹ️ For official, public information and research updates, please visit the authorized source:  
+- 🔗 [qwen.ai](https://qwen.ai/research)
 <div style="background-color: #fff3cd; border-left: 5px solid #ffc107; padding: 20px; margin: 20px 0; border-radius: 4px; font-family: Arial, sans-serif; color: #856404;">
   
   <h3 style="margin-top: 0; color: #856404;">⚠️ STRICT SECURITY & USAGE DISCLAIMER</h3>
-    <p><strong>1. Free Provision of Resources:</strong> All coding and resources provided on this platform are offered <strong>free of charge</strong> and "as-is"      for authorized purposes only.</p>
-     <p><strong>2. Zero Tolerance for Malicious Activity:</strong> Any attempt at hacking, unauthorized access, data theft, or violation of the website owner's          rights is <strong>strictly prohibited</strong>.</p>
-     <p><strong>3. Absolute Right to Remove:</strong> The website owner reserves the <strong>unconditional right</strong> to immediately delete, block, or remove        any content or requests that violate these terms, without prior notice.</p>
-     <p style="margin-bottom: 0;"><em>By accessing this platform, you explicitly agree to these terms. Violating requests will be permanently deleted upon 
-     discovery.</em></p>
+      <p><strong>1. Free Provision of Resources:</strong> All coding and resources provided on this platform are offered <strong>free of charge</strong> and "as-is"      for authorized purposes only.</p>
+        <p><strong>2. Zero Tolerance for Malicious Activity:</strong> Any attempt at hacking, unauthorized access, data theft, or violation of the website owner's          rights is <strong>strictly prohibited</strong>.</p>
+       <p><strong>3. Absolute Right to Remove:</strong> The website owner reserves the <strong>unconditional right</strong> to immediately delete, block, or remove        any content or requests that violate these terms, without prior notice.</p>
+      <p style="margin-bottom: 0;"><em>By accessing this platform, you explicitly agree to these terms. Violating requests will be permanently deleted upon 
+         discovery.
+    </em>
+  </p>
 </div>
-```
 
 ```tex
 no Home work allUo ok`
@@ -124,10 +125,9 @@ correspondence will be conducted strictly through official legal channels.
 All of my legal rights and remedies are expressly reserved.
 
 Sincerely,
-
 ----------------------------------------
-Danial Zivehdar
-Phone: +98 9197159411
-Email: danialzivehdar1992@gmail.com
+- Danial Zivehdar
+- Phone: +98 9197159411
+- Email: danialzivehdar1992@gmail.com
 ----------------------------------------
 ================================================================================
