@@ -1,0 +1,25 @@
+name: 'Action Name'
+description: 'What this action does'
+
+inputs:
+  name:
+    description: 'Name to greet'
+    required: false
+    default: 'World'
+
+outputs:
+  greeting:
+    description: 'The greeting message'
+
+runs:
+  # For more on JavaScript actions (including @actions/toolkit), see:
+  # https://docs.github.com/en/actions/sharing-automations/creating-actions/creating-a-javascript-action
+  using: node24
+  main: index.js
+  # Sample index.js (vanilla JS, no build required):
+  #
+  #   const fs = require('fs');
+  #   const name = process.env.INPUT_NAME || 'World';
+  #   const greeting = `Hello ${name}`;
+  #   console.log(greeting);
+  #   fs.appendFileSync(process.env.GITHUB_OUTPUT, `greeting=${greeting}\n`);
