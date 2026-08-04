@@ -1,15 +1,16 @@
 <a href="https://qwen.ai/research" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #615ced; color: #ffffff; text-decoration: 
-  none; border-radius: 6px; font-family: Arial, sans-serif; font-weight: bold; font-size: 16px; 
+  none; border-radius: 6px; font-family: 
+  Arial, sans-serif; font-weight: bold; font-size: 16px; 
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
 
 - href=https://chat.qwen.ai/community/webdev/b36e63cd-2715-4b45-a4ff-3e1eaca0c316>
-  
-Visit Qwen Research
+  Visit Qwen Research
 </a>
-<img 
-  src="https://chat.qwenlm.io/assets/images/qwen_logo.png" 
-  alt="Qwen Logo" 
-  style="max-width: 200px; height: auto; border-radius: 8px; display: block; margin: 0 auto;"
+ <img 
+ - src="https://chat.qwenlm.io/assets/images/qwen_logo.png"alt="Qwen Logo" 
+ - style="max-width: 200px;
+ - height: auto; border-radius: 8px;
+ - display: block; margin: 0 auto;"
 <a>
 
 ## App Dede  
@@ -26,7 +27,8 @@ Visit Qwen Research
 > Qwen's Blog
 > !IMPORTANT
   
-# ⚠️ STRICTLY PRIVATE & RESTRICTED ACCESS
+`⚠️ STRICTLY PRIVATE & RESTRICTED ACCESS`
+
 - [!IMPORTANT]
 - **This is a private, proprietary environment.**  
 - This platform is **not** a public website, **not** a personal home page, and **not** a public work blog. 
@@ -43,14 +45,12 @@ Visit Qwen Research
         <p><strong>2. Zero Tolerance for Malicious Activity:</strong> Any attempt at hacking, unauthorized access, data theft, or violation of the website owner's          rights is <strong>strictly prohibited</strong>.</p>
        <p><strong>3. Absolute Right to Remove:</strong> The website owner reserves the <strong>unconditional right</strong> to immediately delete, block, or remove        any content or requests that violate these terms, without prior notice.</p>
       <p style="margin-bottom: 0;"><em>By accessing this platform, you explicitly agree to these terms. Violating requests will be permanently deleted upon 
-         discovery.
+        discovery.
     </em>
   </p>
 </div>
 
 ```tex
-no Home work allUo ok`
-  
 Subject: Important Notice Regarding Collaboration
 
  Dear Colleague,
@@ -62,7 +62,7 @@ Subject: Important Notice Regarding Collaboration
   For any inquiries regarding packages, please feel free to reach out via email or leave a comment on GitHub. I remain fully at your service through these  
   channels.
  
-  Please be advised that you are not authorized to use these resources for any personal purposes. I kindly request that you respect professional boundaries at       all times.
+  Please be advised that you are not authorized to use these resources for any personal purposes. I kindly request that you respect professional boundaries at all times.
 
  Thank you for your understanding and cooperation.
  Best regards,
@@ -130,4 +130,3 @@ Sincerely,
 - Phone: +98 9197159411
 - Email: danialzivehdar1992@gmail.com
 ----------------------------------------
-================================================================================
