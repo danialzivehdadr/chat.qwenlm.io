@@ -1,0 +1,38 @@
+  dimensions: ['query', 'page']
+  filters: [{"dimension":"query","operator':"contains","expression":"rpa"}]
+  rowLimit: 1000
+# {
+#   "rows": [
+#     {
+#       "keys": [
+#         "ホゲ rpa",
+#         "https://hoge.co.jp/"
+#       ],
+#       "clicks": 10,
+#       "impressions": 10,
+#       "ctr": 0.141421356,
+#       "position": 1
+#     },
+#     {
+#       "keys": [
+#         "rpa ホゲ 使い方",
+#         "https://hoge.co.jp/"
+#       ],
+#       "clicks": 10,
+#       "impressions": 10,
+#       "ctr": 0.141421356,
+#       "position": 1
+#     },
+#     {
+#       "keys": [
+#         "rpa ホゲ",
+#         "https://hoge.co.jp/"
+#       ],
+#       "clicks": 10,
+#       "impressions": 10,
+#       "ctr": 0.141421356,
+#       "position": 1
+#     },
+#     .............
+#   ]
+# }
