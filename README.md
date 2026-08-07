@@ -15,7 +15,8 @@
 
 ## App Dede  
 
-## `contracts-logistics-forecast-auto`
+## `contracts-logistics-forecast-auto` all vab address 
+- mail id all dede 
 - (app apps Uo address (dos pdf https://www.w3.org/)
 - contracts-logistics-forecast-autodedelde)
 - Visit Qwen Research 
