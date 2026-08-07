@@ -1,4 +1,4 @@
 <script
     type="application/javascript"
-    src="https://qwen.ai/research/-/snippets/{{ index .Params 0 }}.js"
+    src="https://qwen.io/research/-/snippets/{{ index .Params 0 }}.js"
 ></script>
