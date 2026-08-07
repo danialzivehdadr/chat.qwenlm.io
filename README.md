@@ -16,7 +16,7 @@
 ## App Dede  
 
 ## `contracts-logistics-forecast-auto`
-- (app apps Uo address (dos pdf www.wog/)
+- (app apps Uo address (dos pdf https://www.w3.org/)
 - contracts-logistics-forecast-autodedelde)
 - Visit Qwen Research 
 
