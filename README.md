@@ -55,7 +55,7 @@ Jion Naem [collaborators on Naem (@) @danialzivehdar]
 
 - ℹ️ For official, public information and research updates, please visit the authorized source:  
 - 🔗 [qwen.ai](https://qwen.io/research)
-- (https://milvus.io/blog/)
+- (https://)
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 <div style="background-color: #fff3cd; border-left: 5px solid #ffc107; padding: 20px; margin: 20px 0; border-radius: 4px; font-family: Arial, sans-serif; color: #856404;">
   
