@@ -1,20 +1,30 @@
-<a href="https://qwen.ai/research" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #615ced; color: #ffffff; text-decoration: 
-  none; border-radius: 6px; font-family: 
-  Arial, sans-serif; font-weight: bold; font-size: 16px; 
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+Jion Naem [collaborators on Naem (@) @danialzivehdar]
+`pick wallet up k addres id address`
+
+
+<a href="https://qwen.ai/research" target="_blank" style=
+   "display: inline-block; padding: 
+    12px 24px; background-color: 
+    #615ced; color: #ffffff; text-decoration: 
+    none; border-radius: 6px; font-family: 
+    Arial, sans-serif; font-weight: bold; 
+    font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+
+
 
 - href=https://chat.qwen.ai/community/webdev/b36e63cd-2715-4b45-a4ff-3e1eaca0c316>
   Visit Qwen Research
 </a>
  <img 
- - src="https://chat.qwenlm.io/assets/images/qwen_logo.png"alt="Qwen Logo" 
+ - src="https://chat.qwenlm.io/assets/images/qwen_logo.png"alt=
+ - "Qwen Logo" 
  - style="max-width: 200px;
  - height: auto; border-radius: 8px;
  - display: block; margin: 0 auto;"
 <a>
 
 ## App Dede  
------------
+-----------------------------------------------------------------------------------------------------------------------------------------------
 ## `qwen, chat.qwen.io, contracts-logistics-forecast-auto` 
 - `all vab address/`
 - `mail id all dede/`
@@ -43,6 +53,7 @@
 
 - ℹ️ For official, public information and research updates, please visit the authorized source:  
 - 🔗 [qwen.ai](https://qwen.ai/research)
+---------------------------------------------------------------------------------------------------------------------------------------------------
 <div style="background-color: #fff3cd; border-left: 5px solid #ffc107; padding: 20px; margin: 20px 0; border-radius: 4px; font-family: Arial, sans-serif; color: #856404;">
   
   <h3 style="margin-top: 0; color: #856404;">⚠️ STRICT SECURITY & USAGE DISCLAIMER</h3>
