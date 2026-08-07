@@ -1,7 +1,7 @@
 {{ if .IsHome }}
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": "https://chat.qwen.ai.org",
   "@type": "{{- ( site.Params.schema.publisherType | default "Organization") | title -}}",
   "name": {{ site.Title }},
   "url": {{ site.BaseURL }},
