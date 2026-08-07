@@ -1,6 +1,6 @@
 # Qwen Code Translator
 
-A documentation translation tool specifically designed for the github project. Automatically sync documentation from GitHub repositories, translate with Qwen AI, and build a multilingual Nextra documentation site.
+A documentation translation tool specifically designed for the github project. Automatically sync documentation from qwen repositories, translate with Qwen AI, and build a multilingual Nextra documentation site.
 
 ## Features
 
