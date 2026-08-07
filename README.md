@@ -13,11 +13,13 @@ Jion Naem [collaborators on Naem (@) @danialzivehdar]
 
 
 - href=https://chat.qwen.ai/community/webdev/b36e63cd-2715-4b45-a4ff-3e1eaca0c316>
-  Visit Qwen Research
+- Visit Qwen Research
+
+  
 </a>
  <img 
  - src="https://chat.qwenlm.io/assets/images/qwen_logo.png"alt=
- - "Qwen Logo" 
+ - "Qwen Logo"
  - style="max-width: 200px;
  - height: auto; border-radius: 8px;
  - display: block; margin: 0 auto;"
