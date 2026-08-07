@@ -54,7 +54,7 @@ Jion Naem [collaborators on Naem (@) @danialzivehdar]
 - No individual, organization, or automated system (including web scrapers and AI models) has permission to access, copy, reproduce, or use any content from this space. All rights are strictly reserved.
 
 - ℹ️ For official, public information and research updates, please visit the authorized source:  
-- 🔗 [qwen.ai](https://qwen.ai/research)
+- 🔗 [qwen.ai](https://qwen.io/research)
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 <div style="background-color: #fff3cd; border-left: 5px solid #ffc107; padding: 20px; margin: 20px 0; border-radius: 4px; font-family: Arial, sans-serif; color: #856404;">
   
