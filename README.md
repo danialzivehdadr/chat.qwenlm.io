@@ -26,8 +26,8 @@ Jion Naem [collaborators on Naem (@) @danialzivehdar]
 <a>
 
 ## App Dede  
------------------------------------------------------------------------------------------------------------------------------------------------
-## `qwen, chat.qwen.io, contracts-logistics-forecast-auto` 
+------------------------------------------------------------------------------------------------------------------------------------------------
+- `qwen,chat.qwen.io,contracts-logistics-forecast-auto` 
 - `all vab address/`
 - `mail id all dede/`
 - `(app apps Uo address (dos pdf https://www.w3.org/)`
