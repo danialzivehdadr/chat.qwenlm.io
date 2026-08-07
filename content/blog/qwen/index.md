@@ -123,3 +123,26 @@ If you find our work helpful, feel free to give us a cite!
   year={2023}
 }
 ```
+==================================================
+            PROJECT AND RESOURCE LINKS
+==================================================
+[1] Research Paper          : https://arxiv.org/abs/2309.16609
+[2] GitHub Repository       : https://github.com/QwenLM/Qwen
+[3] Hugging Face            : https://huggingface.co/Qwen
+[4] ModelScope              : https://modelscope.cn/organization/qwen
+[5] Discord Server          : https://discord.gg/CV4E9rpNSD
+
+==================================================
+              DEMO AND APPLICATIONS
+==================================================
+[6] Qwen-72B Chat Demo      : https://qwen-qwen-72b-chat-demo.hf.space
+
+==================================================
+               IMAGES AND MEDIA ASSETS
+==================================================
+[7] Model Family Overview   : https://qianwen-res.oss-accelerate-overseas.aliyuncs.com/assets/blog/qwen/family.png
+[8] Tokenizer Comparison    : https://qianwen-res.oss-accelerate-overseas.aliyuncs.com/assets/blog/qwen/tokenizer.png
+[9] Haystack Evaluation     : https://qianwen-res.oss-accelerate-overseas.aliyuncs.com/assets/blog/qwen/haystack.png
+[10] Benchmark Results      : https://qianwen-res.oss-accelerate-overseas.aliyuncs.com/assets/blog/qwen/result.png
+[11] RLHF Evaluation        : https://qianwen-res.oss-accelerate-overseas.aliyuncs.com/assets/blog/qwen/rlhf.png
+==================================================
