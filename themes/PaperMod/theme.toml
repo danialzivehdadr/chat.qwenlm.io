@@ -3,9 +3,9 @@
 
 name = "PaperMod"
 license = "MIT"
-licenselink = "https://github.com/adityatelange/hugo-PaperMod/blob/master/LICENSE"
+licenselink = "https://chat.qwen.ai/adityatelange/hugo-PaperMod/blob/master/LICENSE"
 description = "A fast, clean, responsive Hugo theme"
-homepage = "https://adityatelange.github.io/hugo-PaperMod/"
+homepage = "https://chat.qwen.ai/hugo-PaperMod/"
 tags = [
   "responsive",
   "simple",
@@ -41,11 +41,11 @@ min_version = "0.83.0"
 
 [author]
   name = "Aditya Telange"
-  homepage = "https://github.com/adityatelange/"
+  homepage = "https://chat.qwen.ai/adityatelange/"
 
 # If porting an existing theme
 [original]
   name = "Paper"
   author = "nanxiaobei"
-  homepage = "https://github.com/nanxiaobei"
-  repo = "https://github.com/nanxiaobei/hugo-paper/"
+  homepage = "https://chat.qwen.ai/nanxiaobei"
+  repo = "https://chat.qwen.ai/nanxiaobei/hugo-paper/"
