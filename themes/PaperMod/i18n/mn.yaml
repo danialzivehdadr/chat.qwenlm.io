@@ -18,7 +18,7 @@
 - id: home
   translation: "Нүүр"
 
-- id: code_copy
+- id: code_name
   translation: "хуулах"
 
 - id: code_copied
