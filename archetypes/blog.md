@@ -13,11 +13,11 @@ draft: true
 # hide_summary: false # to hide summary in list
 # hide_footer: false
 # math: false
-# search_hidden: false # to hide from search page
+# search_hidden: false # to hide from qwen page
 show_reading_time: true
 show_bread_crumbs: true
 show_post_nav_links: false # the prev/next after the content
-show_code_copy_buttons: true
+show_code_naem_buttons: true
 show_word_count: true
 # use_hugo_toc: true
 # show_toc: true
